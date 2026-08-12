@@ -1,0 +1,149 @@
+// Панель раздела (id 8c) — «СЕРВЕРЫ» / «ПЕРСОНАЖ» / «НАСТРОЙКИ».
+// Полноэкранная панель 1744×571 над затемнённым фоном. Лента при этом
+// ужимается до 112, ИГРАТЬ заменяется на НАЗАД — это делает TFL_SectionPanel.
+// Выбранная строка — olive-заливка 10% + левая марка 3px.
+
+FrameWidgetClass TFL_SectionRoot
+{
+    position 0 0
+    size 1 1
+    {
+        PanelWidgetClass tfl_section_dim { ignorepointer 1 position 0 0 size 1 1 color 0xcc090b0c }
+
+        PanelWidgetClass tfl_section_panel
+        {
+            position 0.045833 0.240741
+            size 0.908333 0.528704
+            color 0xff23282a
+            {
+                PanelWidgetClass fill { ignorepointer 1 position 0.000573 0.001751 size 0.998854 0.996498 color 0xff141819 }
+
+                TextWidgetClass hdr_name { ignorepointer 1 position 0.0460 0.030 size 0.2898 0.060 text "СЕРВЕР" color 0xff969b96 }
+                TextWidgetClass hdr_map { ignorepointer 1 position 0.3648 0.030 size 0.1352 0.060 text "КАРТА" color 0xff969b96 }
+                TextWidgetClass hdr_players { ignorepointer 1 position 0.5193 0.030 size 0.1159 0.060 text "ИГРОКИ" color 0xff969b96 }
+                TextWidgetClass hdr_mode { ignorepointer 1 position 0.6546 0.030 size 0.1352 0.060 text "РЕЖИМ" color 0xff969b96 }
+                TextWidgetClass hdr_ping { ignorepointer 1 position 0.8091 0.030 size 0.0966 0.060 text "ПИНГ" color 0xff969b96 }
+                PanelWidgetClass hdr_sep { ignorepointer 1 position 0.017 0.105 size 0.966 0.00175 color 0xff23282a }
+
+                ButtonWidgetClass tfl_row_0
+                {
+                    position 0.017 0.122592
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+                ButtonWidgetClass tfl_row_1
+                {
+                    position 0.017 0.241681
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+                ButtonWidgetClass tfl_row_2
+                {
+                    position 0.017 0.36077
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+                ButtonWidgetClass tfl_row_3
+                {
+                    position 0.017 0.479859
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+                ButtonWidgetClass tfl_row_4
+                {
+                    position 0.017 0.598948
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+                ButtonWidgetClass tfl_row_5
+                {
+                    position 0.017 0.718037
+                    size 0.966 0.112084
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.000593 0.015625 size 0.998814 0.968750 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0 size 0.00178 1 color 0x007c8563 }
+                        TextWidgetClass name   { ignorepointer 1 position 0.030 0.25 size 0.300 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass map   { ignorepointer 1 position 0.360 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass players   { ignorepointer 1 position 0.520 0.25 size 0.120 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass mode   { ignorepointer 1 position 0.660 0.25 size 0.140 0.5 text "" color 0xffd6d7d2 }
+                        TextWidgetClass ping   { ignorepointer 1 position 0.820 0.25 size 0.100 0.5 text "" color 0xffd6d7d2 }
+                    }
+                }
+
+                TextWidgetClass tfl_section_desc
+                {
+                    ignorepointer 1
+                    position 0.017 0.830
+                    size 0.60 0.100
+                    text ""
+                    color 0xff969b96
+                }
+
+                ButtonWidgetClass tfl_section_action
+                {
+                    position 0.805046 0.807356
+                    size 0.172018 0.122592
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff7c8563 }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0x29697254 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0xff7c8563 }
+                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ПОДКЛЮЧИТЬСЯ" color 0xffecede9 }
+                    }
+                }
+            }
+        }
+    }
+}

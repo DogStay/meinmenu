@@ -12,6 +12,9 @@ class TFL_MenuConfig
     string  StatusLine      = "THE FIRST LINE | MILITARY RP  ·  CHERNARUS";
     string  VersionLabel    = "1.0.0";
 
+    //! Центрированная раскладка загрузки (id 8b) — для 3440×1440 и 4K.
+    bool    CenteredLoading = false;
+
     static const string DIR  = "$profile:TFL";
     static const string PATH = "$profile:TFL/menu_config.json";
 

@@ -1,0 +1,98 @@
+// 04 LOADING — центрированная раскладка (id 8b) для 3440×1440 и 4K.
+// Логотип по центру сверху, hint 1000×340 горизонтальный, прогресс 1000×24.
+// Имена прогресс-виджетов совпадают с loading_screen.layout.
+
+FrameWidgetClass TFL_LoadingCenteredRoot
+{
+    position 0 0
+    size 1 1
+    {
+        ImageWidgetClass tfl_load_bg
+        {
+            ignorepointer 1
+            position 0 0
+            size 1 1
+            image0 "TFL/GUI/textures/loading_background_02.paa"
+            mode blend
+            "src alpha" 1
+            "stretch mode" 1
+            color 0xffffffff
+        }
+
+        PanelWidgetClass tfl_load_dim { ignorepointer 1 position 0 0 size 1 1 color 0x59090b0c }
+
+        TextWidgetClass tfl_load_logo
+        {
+            ignorepointer 1
+            position 0.416667 0.111111
+            size 0.166667 0.066667
+            text "THE FIRST LINE"
+            color 0xffecede9
+        }
+
+        // hint 1000×340, по центру
+        PanelWidgetClass tfl_load_hint_holder
+        {
+            position 0.239583 0.370370
+            size 0.520833 0.314815
+            color 0x00000000
+        }
+
+        // прогресс 1000×24 под карточкой
+        PanelWidgetClass tfl_progress_track
+        {
+            ignorepointer 1
+            position 0.239583 0.740741
+            size 0.520833 0.022222
+            color 0xff23282a
+            {
+                PanelWidgetClass tfl_progress_bg
+                {
+                    ignorepointer 1
+                    position 0.001 0.041667
+                    size 0.998 0.916667
+                    color 0xff101415
+                }
+
+                PanelWidgetClass tfl_progress_fill
+                {
+                    ignorepointer 1
+                    position 0.001 0.041667
+                    size 0 0.916667
+                    color 0xff697254
+                }
+
+                PanelWidgetClass tfl_progress_caps
+                {
+                    ignorepointer 1
+                    position 0 -0.166667
+                    size 0.004 1.5
+                    color 0xffa8b18c
+                }
+
+                PanelWidgetClass tick_25 { ignorepointer 1 position 0.25 0 size 0.001 1 color 0xff23282a }
+                PanelWidgetClass tick_50 { ignorepointer 1 position 0.50 0 size 0.001 1 color 0xff23282a }
+                PanelWidgetClass tick_75 { ignorepointer 1 position 0.75 0 size 0.001 1 color 0xff23282a }
+            }
+        }
+
+        // процент по центру под треком
+        TextWidgetClass tfl_progress_percent
+        {
+            ignorepointer 1
+            position 0.239583 0.777778
+            size 0.520833 0.037037
+            text "0%"
+            color 0xffecede9
+        }
+
+        TextWidgetClass tfl_load_caption
+        {
+            ignorepointer 1
+            position 0.239583 0.833333
+            size 0.520833 0.022222
+            text "НЕ ВЫКЛЮЧАЙТЕ ИГРУ ДО ЗАВЕРШЕНИЯ ЗАГРУЗКИ"
+            color 0xff5c6360
+        }
+    }
+}

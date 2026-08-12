@@ -28,6 +28,10 @@ modded class MainMenu
 
     protected ref TFL_MenuConfig m_TFLConfig;
 
+    protected ref TFL_SectionPanel m_TFLSection;
+    protected bool  m_TFLSectionOpen;
+    protected float m_TFLBarY, m_TFLBarH;   //!< габариты ленты до сжатия
+
     protected float m_TFLTime;      //!< общее время с открытия меню (сек)
     protected float m_TFLBgTime;    //!< фаза ping-pong зума фона
 
@@ -85,6 +89,13 @@ modded class MainMenu
         m_BtnDiscord   = TFLMakeButton("tfl_btn_discord",   TFL_BtnStyle.SECONDARY);
         m_BtnWebsite   = TFLMakeButton("tfl_btn_website",   TFL_BtnStyle.SECONDARY);
         m_BtnExit      = TFLMakeButton("tfl_btn_exit",      TFL_BtnStyle.DANGER);
+
+        if (m_TFLActionBar)
+        {
+            float x, w;
+            m_TFLActionBar.GetPos(x, m_TFLBarY);
+            m_TFLActionBar.GetSize(w, m_TFLBarH);
+        }
     }
 
     protected TFL_MenuButton TFLMakeButton(string name, TFL_BtnStyle style)
@@ -154,19 +165,45 @@ modded class MainMenu
         if (!m_TFLRoot || !w)
             return super.OnClick(w, x, y, button);
 
-        if (TFLIs(w, m_BtnPlay))      { TFLPlay();      return true; }
-        if (TFLIs(w, m_BtnServers))   { TFLOpen(MENU_SERVER_BROWSER); return true; }
+        // Панель раздела перехватывает клики первой
+        if (m_TFLSectionOpen && m_TFLSection)
+        {
+            if (m_TFLSection.OnClick(w))
+                return true;
+
+            if (m_TFLSection.GetActionWidget() == w)
+            {
+                TFLConnectSelected();
+                return true;
+            }
+        }
+
+        // При открытом разделе ИГРАТЬ работает как НАЗАД
+        if (TFLIs(w, m_BtnPlay))
+        {
+            if (m_TFLSectionOpen)
+                TFLCloseSection();
+            else
+                TFLPlay();
+
+            return true;
+        }
+
+        if (TFLIs(w, m_BtnServers))   { TFLOpenSection();             return true; }
         if (TFLIs(w, m_BtnCharacter)) { TFLOpen(MENU_CHARACTER);      return true; }
         if (TFLIs(w, m_BtnSettings))  { TFLOpen(MENU_OPTIONS);        return true; }
         if (TFLIs(w, m_BtnDiscord))   { TFLOpenURL(m_TFLConfig.DiscordURL); return true; }
         if (TFLIs(w, m_BtnWebsite))   { TFLOpenURL(m_TFLConfig.WebsiteURL); return true; }
-        if (TFLIs(w, m_BtnExit))      { GetGame().RequestExit(IDC_MAIN_QUIT); return true; }
+        if (TFLIs(w, m_BtnExit))      { TFLConfirmExit();             return true; }
 
         return super.OnClick(w, x, y, button);
     }
 
     override bool OnMouseEnter(Widget w, int x, int y)
     {
+        if (m_TFLSectionOpen && m_TFLSection && m_TFLSection.OnMouseEnter(w))
+            return true;
+
         TFL_MenuButton btn = TFLFind(w);
 
         if (btn)
@@ -186,6 +223,9 @@ modded class MainMenu
 
     override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
     {
+        if (m_TFLSectionOpen && m_TFLSection && m_TFLSection.OnMouseLeave(w))
+            return true;
+
         TFL_MenuButton btn = TFLFind(w);
 
         if (btn)
@@ -259,6 +299,129 @@ modded class MainMenu
         g_Game.ConnectFromServerBrowser(m_TFLConfig.ServerIP, m_TFLConfig.ServerPort, m_TFLConfig.ServerPassword);
     }
 
+    // --------------------------------------------------- панель раздела (8c)
+
+    protected void TFLOpenSection()
+    {
+        if (m_TFLSectionOpen)
+            return;
+
+        if (!m_TFLSection)
+            m_TFLSection = new TFL_SectionPanel(m_TFLRoot);
+
+        if (!m_TFLSection.GetRoot())
+            return;
+
+        m_TFLSection.SetRows(TFLBuildServerRows());
+        m_TFLSection.SetActionLabel("ПОДКЛЮЧИТЬСЯ");
+        m_TFLSection.Show(true);
+
+        m_TFLSectionOpen = true;
+
+        // лента ужимается до 112, ИГРАТЬ становится НАЗАД, раздел помечен
+        TFLSetBarHeight(112.0 / 1080.0);
+        TFLSetPlayLabel("НАЗАД");
+
+        if (m_BtnServers)
+            m_BtnServers.SetState(TFL_BtnState.ACTIVE, 0.180);
+    }
+
+    protected void TFLCloseSection()
+    {
+        if (!m_TFLSectionOpen)
+            return;
+
+        m_TFLSectionOpen = false;
+
+        if (m_TFLSection)
+            m_TFLSection.Show(false);
+
+        TFLSetBarHeight(m_TFLBarH);
+        TFLSetPlayLabel("ИГРАТЬ");
+
+        if (m_BtnServers)
+            m_BtnServers.SetState(TFL_BtnState.NORMAL, 0.120);
+    }
+
+    //! Строки раздела «СЕРВЕРЫ». Сейчас — сервер из конфига; сюда же
+    //! подставляется реальный список, когда придут данные браузера.
+    protected array<ref TFL_SectionRow> TFLBuildServerRows()
+    {
+        array<ref TFL_SectionRow> rows = new array<ref TFL_SectionRow>;
+
+        rows.Insert(new TFL_SectionRow(
+            m_TFLConfig.ServerName,
+            "CHERNARUS",
+            "-- / --",
+            "MILITARY RP",
+            "--",
+            m_TFLConfig.StatusLine));
+
+        return rows;
+    }
+
+    protected void TFLConnectSelected()
+    {
+        TFL_SectionRow row = m_TFLSection.GetSelected();
+
+        if (!row)
+            return;
+
+        TFLPlay();
+    }
+
+    protected void TFLSetBarHeight(float height)
+    {
+        if (!m_TFLActionBar)
+            return;
+
+        float x, y, w, h;
+        m_TFLActionBar.GetPos(x, y);
+        m_TFLActionBar.GetSize(w, h);
+
+        // низ ленты остаётся на месте
+        float bottom = m_TFLBarY + m_TFLBarH;
+
+        m_TFLActionBar.SetSize(w, height);
+        m_TFLActionBar.SetPos(x, bottom - height);
+    }
+
+    protected void TFLSetPlayLabel(string label)
+    {
+        if (!m_BtnPlay)
+            return;
+
+        TextWidget w = TextWidget.Cast(m_BtnPlay.GetWidget().FindAnyWidget("label"));
+
+        if (w)
+            w.SetText(label);
+    }
+
+    // -------------------------------------------------------- выход (7a)
+
+    protected void TFLConfirmExit()
+    {
+        TFL_DialogMenu dialog = TFL_DialogMenu.ShowConfirm(
+            "ПОДТВЕРЖДЕНИЕ",
+            "Вы действительно хотите выйти из игры?",
+            "ВЫЙТИ");
+
+        if (!dialog)
+        {
+            // Диалог не создался — не блокируем выход.
+            GetGame().RequestExit(IDC_MAIN_QUIT);
+            return;
+        }
+
+        dialog.Event_OnResult.Insert(TFLOnExitResult);
+    }
+
+    void TFLOnExitResult(bool confirmed)
+    {
+        if (confirmed)
+            GetGame().RequestExit(IDC_MAIN_QUIT);
+    }
+
     protected void TFLOpen(int menuId)
     {
         UIManager ui = GetGame().GetUIManager();
@@ -293,6 +456,9 @@ modded class MainMenu
             btn.Update(timeslice);
 
         m_TFLTooltip.Update(timeslice);
+
+        if (m_TFLSectionOpen && m_TFLSection)
+            m_TFLSection.Update(timeslice);
 
         // 5b: пока висит tooltip — фон дополнительно затемняется на 8%
         if (m_TFLDim)

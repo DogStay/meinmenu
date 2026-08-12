@@ -1,0 +1,94 @@
+// 08 HINT CARD — горизонтальный вариант 1000×340 для центрированной
+// загрузки (id 8b, 3440×1440 / 4K). Изображение слева, текст справа.
+// Имена виджетов те же — контроллер TFL_HintCard общий.
+
+FrameWidgetClass TFL_HintCardWide
+{
+    position 0 0
+    size 1 1
+    {
+        PanelWidgetClass tfl_hint_border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+        PanelWidgetClass tfl_hint_fill   { ignorepointer 1 position 0.001 0.002941 size 0.998 0.994118 color 0xff141819 }
+
+        ImageWidgetClass tfl_hint_image
+        {
+            ignorepointer 1
+            position 0 0
+            size 0.34 1
+            mode blend
+            "src alpha" 1
+            "stretch mode" 1
+            color 0xffffffff
+        }
+
+        PanelWidgetClass tfl_hint_image_dim
+        {
+            ignorepointer 1
+            position 0 0.7
+            size 0.34 0.3
+            color 0x80090b0c
+        }
+
+        TextWidgetClass tfl_hint_category
+        {
+            ignorepointer 1
+            position 0.38 0.117647
+            size 0.56 0.070588
+            text ""
+            color 0xff7c8563
+        }
+
+        TextWidgetClass tfl_hint_title
+        {
+            ignorepointer 1
+            position 0.38 0.235294
+            size 0.56 0.117647
+            text ""
+            color 0xffecede9
+        }
+
+        MultilineTextWidgetClass tfl_hint_desc
+        {
+            ignorepointer 1
+            position 0.38 0.411765
+            size 0.56 0.344118
+            text ""
+            color 0xffd6d7d2
+        }
+
+        TextWidgetClass tfl_hint_counter
+        {
+            ignorepointer 1
+            position 0.38 0.811765
+            size 0.3 0.070588
+            text ""
+            color 0xff969b96
+        }
+
+        ButtonWidgetClass tfl_hint_prev
+        {
+            position 0.84 0.752941
+            size 0.056 0.129412
+            color 0x00000000
+            {
+                PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                PanelWidgetClass fill   { ignorepointer 1 position 0.017857 0.022727 size 0.964286 0.954545 color 0xff141819 }
+                PanelWidgetClass mark   { ignorepointer 1 position 0 0.909091 size 1 0.090909 color 0x007c8563 }
+                TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "<" color 0xffd6d7d2 }
+            }
+        }
+
+        ButtonWidgetClass tfl_hint_next
+        {
+            position 0.904 0.752941
+            size 0.056 0.129412
+            color 0x00000000
+            {
+                PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                PanelWidgetClass fill   { ignorepointer 1 position 0.017857 0.022727 size 0.964286 0.954545 color 0xff141819 }
+                PanelWidgetClass mark   { ignorepointer 1 position 0 0.909091 size 1 0.090909 color 0x007c8563 }
+                TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text ">" color 0xffd6d7d2 }
+            }
+        }
+    }
+}

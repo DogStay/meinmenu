@@ -1,0 +1,87 @@
+// 09/10 DIALOGS (id 7a) — одна панель panel_dialog 720×360 на все типы.
+// Различаются только цветом акцентной марки, границы и набором кнопок.
+// Esc = отмена, Enter = подтверждение (TFL_DialogMenu).
+
+FrameWidgetClass TFL_DialogRoot
+{
+    position 0 0
+    size 1 1
+    {
+        // затемнение сцены 70% (blur 8px требует PAA — см. README)
+        PanelWidgetClass tfl_dialog_dim { ignorepointer 1 position 0 0 size 1 1 color 0xb3090b0c }
+
+        PanelWidgetClass tfl_dialog_panel
+        {
+            position 0.3125 0.333333
+            size 0.375 0.333333
+            color 0xff23282a
+            {
+                PanelWidgetClass fill { ignorepointer 1 position 0.001389 0.002778 size 0.997222 0.994444 color 0xff141819 }
+                PanelWidgetClass tfl_dialog_mark { ignorepointer 1 position 0 0 size 1 0.011111 color 0xff7c8563 }
+
+                TextWidgetClass tfl_dialog_title
+                {
+                    ignorepointer 1
+                    position 0.055556 0.111111
+                    size 0.888889 0.083333
+                    text "ПОДТВЕРЖДЕНИЕ"
+                    color 0xffecede9
+                }
+
+                MultilineTextWidgetClass tfl_dialog_text
+                {
+                    ignorepointer 1
+                    position 0.055556 0.277778
+                    size 0.888889 0.216667
+                    text ""
+                    color 0xffd6d7d2
+                }
+
+                // строка кода ошибки (только для ОШИБКА ПОДКЛЮЧЕНИЯ)
+                TextWidgetClass tfl_dialog_code
+                {
+                    ignorepointer 1
+                    position 0.055556 0.527778
+                    size 0.888889 0.055556
+                    text ""
+                    color 0xff8a5c5c
+                }
+
+                // футер отделён линией 1px
+                PanelWidgetClass tfl_dialog_sep
+                {
+                    ignorepointer 1
+                    position 0.055556 0.627778
+                    size 0.888889 0.002778
+                    color 0xff23282a
+                }
+
+                ButtonWidgetClass tfl_dialog_btn_left
+                {
+                    position 0.077778 0.694444
+                    size 0.416667 0.194444
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
+                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ОТМЕНА" color 0xffd6d7d2 }
+                    }
+                }
+
+                ButtonWidgetClass tfl_dialog_btn_right
+                {
+                    position 0.527778 0.694444
+                    size 0.416667 0.194444
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff4a3335 }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x008a5c5c }
+                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ВЫЙТИ" color 0xffd6d7d2 }
+                    }
+                }
+            }
+        }
+    }
+}

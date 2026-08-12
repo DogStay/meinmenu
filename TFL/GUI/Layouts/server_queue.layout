@@ -1,0 +1,118 @@
+// 05 SERVER QUEUE (id 6b) — очередь на сервер.
+// Фон тот же арт: blur 6px недоступен без PAA, компенсируется затемнением 65%.
+
+FrameWidgetClass TFL_QueueRoot
+{
+    position 0 0
+    size 1 1
+    {
+        ImageWidgetClass tfl_queue_bg
+        {
+            ignorepointer 1
+            position 0 0
+            size 1 1
+            image0 "TFL/GUI/textures/loading_background_03.paa"
+            mode blend
+            "src alpha" 1
+            "stretch mode" 1
+            color 0xffffffff
+        }
+
+        PanelWidgetClass tfl_queue_dim { ignorepointer 1 position 0 0 size 1 1 color 0xa6090b0c }
+
+        // queue_panel 800×420, центр по Y, x=300
+        PanelWidgetClass tfl_queue_panel
+        {
+            position 0.15625 0.305556
+            size 0.416667 0.388889
+            color 0xff23282a
+            {
+                PanelWidgetClass fill { ignorepointer 1 position 0.00125 0.002381 size 0.9975 0.995238 color 0xff141819 }
+                PanelWidgetClass mark { ignorepointer 1 position 0 0 size 1 0.009524 color 0xff7c8563 }
+
+                TextWidgetClass tfl_queue_title
+                {
+                    ignorepointer 1
+                    position 0.05 0.095238
+                    size 0.9 0.071429
+                    text "ПОДКЛЮЧЕНИЕ К СЕРВЕРУ"
+                    color 0xffecede9
+                }
+
+                TextWidgetClass tfl_queue_label
+                {
+                    ignorepointer 1
+                    position 0.05 0.214286
+                    size 0.9 0.061905
+                    text "Ваша позиция в очереди"
+                    color 0xff969b96
+                }
+
+                // позиция — 88px tabular
+                TextWidgetClass tfl_queue_position
+                {
+                    ignorepointer 1
+                    position 0.05 0.333333
+                    size 0.30 0.238095
+                    text "--"
+                    color 0xffecede9
+                }
+
+                // «/ NN» — 36px вторичным
+                TextWidgetClass tfl_queue_total
+                {
+                    ignorepointer 1
+                    position 0.30 0.476190
+                    size 0.25 0.095238
+                    text ""
+                    color 0xff969b96
+                }
+
+                TextWidgetClass tfl_queue_waiting
+                {
+                    ignorepointer 1
+                    position 0.05 0.642857
+                    size 0.35 0.061905
+                    text "Ожидание подключения"
+                    color 0xff969b96
+                }
+
+                // индикатор: три квадрата 8×8, поочерёдная пульсация 1.2 s
+                PanelWidgetClass tfl_queue_dot_0 { ignorepointer 1 position 0.400 0.671429 size 0.01 0.019048 color 0xff7c8563 }
+                PanelWidgetClass tfl_queue_dot_1 { ignorepointer 1 position 0.425 0.671429 size 0.01 0.019048 color 0xff7c8563 }
+                PanelWidgetClass tfl_queue_dot_2 { ignorepointer 1 position 0.450 0.671429 size 0.01 0.019048 color 0xff7c8563 }
+
+                // ОТМЕНА — danger 300×70
+                ButtonWidgetClass tfl_queue_cancel
+                {
+                    position 0.05 0.738095
+                    size 0.375 0.166667
+                    color 0x00000000
+                    {
+                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff4a3335 }
+                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff141819 }
+                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x008a5c5c }
+                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ОТМЕНА" color 0xffd6d7d2 }
+                    }
+                }
+            }
+        }
+
+        // hint-карточка 600×400 справа (тот же компонент, без стрелок)
+        PanelWidgetClass tfl_queue_hint_holder
+        {
+            position 0.641667 0.314815
+            size 0.3125 0.370370
+            color 0x00000000
+        }
+
+        TextWidgetClass tfl_queue_caption
+        {
+            ignorepointer 1
+            position 0.15625 0.907407
+            size 0.6 0.022222
+            text "СРЕДНЕЕ ВРЕМЯ ОЖИДАНИЯ ~ 4 МИН · НЕ ЗАКРЫВАЙТЕ КЛИЕНТ"
+            color 0xff5c6360
+        }
+    }
+}
