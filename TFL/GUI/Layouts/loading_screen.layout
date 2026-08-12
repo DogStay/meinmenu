@@ -1,123 +1,282 @@
-// 03 LOADING SCREEN (id 6a) — 1920×1080.
-// Прогресс-блок низ-лево, hint-карточка у правого края safe-zone.
+// 03 LOADING SCREEN (id 6a). Сгенерирован tools/gen_layouts.py
 
-FrameWidgetClass TFL_LoadingRoot
-{
-    position 0 0
-    size 1 1
-    {
-        ImageWidgetClass tfl_load_bg
-        {
-            ignorepointer 1
-            position 0 0
-            size 1 1
-            image0 "TFL/GUI/textures/loading_background_01.paa"
-            mode blend
-            "src alpha" 1
-            "stretch mode" 1
-            color 0xffffffff
-        }
-
-        PanelWidgetClass tfl_load_grad_0 { ignorepointer 1 position 0 0.611111 size 1 0.097222 color 0x22090b0c }
-        PanelWidgetClass tfl_load_grad_1 { ignorepointer 1 position 0 0.708333 size 1 0.097222 color 0x55090b0c }
-        PanelWidgetClass tfl_load_grad_2 { ignorepointer 1 position 0 0.805556 size 1 0.097222 color 0x8f090b0c }
-        PanelWidgetClass tfl_load_grad_3 { ignorepointer 1 position 0 0.902778 size 1 0.097222 color 0xcc090b0c }
-
-        // logo_small 320×72 @ (176, 120)
-        TextWidgetClass tfl_load_logo
-        {
-            ignorepointer 1
-            position 0.091667 0.111111
-            size 0.166667 0.066667
-            text "THE FIRST LINE"
-            color 0xffecede9
-        }
-
-        // panel_hint 600×460 у правого края safe-zone, y=180
-        PanelWidgetClass tfl_load_hint_holder
-        {
-            position 0.641667 0.166667
-            size 0.3125 0.425926
-            color 0x00000000
-        }
-
-        // --- Прогресс-блок ---
-        TextWidgetClass tfl_load_label
-        {
-            ignorepointer 1
-            position 0.045833 0.792593
-            size 0.4 0.024074
-            text "ЗАГРУЗКА МИРА"
-            color 0xff969b96
-        }
-
-        // трек 1280×28
-        PanelWidgetClass tfl_progress_track
-        {
-            ignorepointer 1
-            position 0.045833 0.833333
-            size 0.666667 0.025926
-            color 0xff23282a
-            {
-                PanelWidgetClass tfl_progress_bg
-                {
-                    ignorepointer 1
-                    position 0.000781 0.035714
-                    size 0.998438 0.928571
-                    color 0xff101415
-                }
-
-                // заливка — ширину задаёт TFL_ProgressBar
-                PanelWidgetClass tfl_progress_fill
-                {
-                    ignorepointer 1
-                    position 0.000781 0.035714
-                    size 0 0.928571
-                    color 0xff697254
-                }
-
-                // caps-риска 4×36 на краю заливки
-                PanelWidgetClass tfl_progress_caps
-                {
-                    ignorepointer 1
-                    position 0 -0.142857
-                    size 0.003125 1.285714
-                    color 0xffa8b18c
-                }
-
-                // риски делений каждые 25%
-                PanelWidgetClass tick_25 { ignorepointer 1 position 0.25 0 size 0.000781 1 color 0xff23282a }
-                PanelWidgetClass tick_50 { ignorepointer 1 position 0.50 0 size 0.000781 1 color 0xff23282a }
-                PanelWidgetClass tick_75 { ignorepointer 1 position 0.75 0 size 0.000781 1 color 0xff23282a }
-            }
-        }
-
-        // процент 40px tabular, справа от трека
-        TextWidgetClass tfl_progress_percent
-        {
-            ignorepointer 1
-            position 0.725 0.829630
-            size 0.15 0.037037
-            text "0%"
-            color 0xffecede9
-        }
-
-        TextWidgetClass tfl_load_caption
-        {
-            ignorepointer 1
-            position 0.045833 0.888889
-            size 0.6 0.022222
-            text "CHERNARUS · ЗАГРУЗКА ЛАНДШАФТА"
-            color 0xff5c6360
-        }
-
-        TextWidgetClass tfl_load_warning
-        {
-            ignorepointer 1
-            position 0.045833 0.917593
-            size 0.6 0.022222
-            text "НЕ ВЫКЛЮЧАЙТЕ ИГРУ ДО ЗАВЕРШЕНИЯ ЗАГРУЗКИ"
-            color 0xff5c6360
-        }
+PanelWidgetClass TFL_LoadingRoot {
+ position 0 0
+ size 1 1
+ color 0 0 0 0
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass tfl_load_bg {
+   position 0 0
+   size 1 1
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/loading_background_01.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_load_grad_0 {
+   position 0 0.611111
+   size 1 0.098148
+   color 0.035294 0.043137 0.047059 0.087055
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_load_grad_1 {
+   position 0 0.708333
+   size 1 0.098148
+   color 0.035294 0.043137 0.047059 0.263902
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_load_grad_2 {
+   position 0 0.805556
+   size 1 0.098148
+   color 0.035294 0.043137 0.047059 0.50488
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_load_grad_3 {
+   position 0 0.902778
+   size 1 0.098148
+   color 0.035294 0.043137 0.047059 0.8
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_load_logo {
+   position 0.091667 0.111111
+   size 0.166667 0.074074
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/logo_small.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfl_load_hint_holder {
+   position 0.641667 0.166667
+   size 0.3125 0.425926
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+   }
+  }
+  TextWidgetClass tfl_load_label {
+   font "gui/fonts/metron-bold14"
+   text "ЗАГРУЗКА МИРА"
+   "text color" 0.588235 0.607843 0.588235 1
+   "text valign" center
+   "text halign" left
+   position 0.045833 0.792593
+   size 0.208333 0.024074
+   color 1 1 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   "exact text" 1
+  }
+  PanelWidgetClass tfl_progress_track {
+   position 0.045833 0.833333
+   size 0.666667 0.025926
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   {
+    ImageWidgetClass border {
+     position 0 0
+     size 1 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
     }
+    ImageWidgetClass tfl_progress_bg {
+     position 0.000781 0.035714
+     size 0.998437 0.928571
+     color 0.062745 0.078431 0.082353 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tfl_progress_fill {
+     position 0.000781 0.035714
+     size 0 0.928571
+     color 0.411765 0.447059 0.329412 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tfl_progress_caps {
+     position 0.000781 -0.142857
+     size 0.003125 1.285714
+     color 0.658824 0.694118 0.54902 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tick_25 {
+     position 0.25 0
+     size 0.000781 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tick_50 {
+     position 0.5 0
+     size 0.000781 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tick_75 {
+     position 0.75 0
+     size 0.000781 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+   }
+  }
+  TextWidgetClass tfl_progress_percent {
+   font "gui/fonts/etelkatextpro22"
+   text "0%"
+   "text color" 0.92549 0.929412 0.913725 1
+   "text valign" center
+   "text halign" left
+   position 0.725 0.82963
+   size 0.104167 0.037037
+   color 1 1 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   "exact text" 1
+  }
+  TextWidgetClass tfl_load_caption {
+   font "gui/fonts/metron-bold14"
+   text "CHERNARUS · ЗАГРУЗКА ЛАНДШАФТА"
+   "text color" 0.360784 0.388235 0.376471 1
+   "text valign" center
+   "text halign" left
+   position 0.045833 0.881481
+   size 0.364583 0.022222
+   color 1 1 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   "exact text" 1
+  }
+  TextWidgetClass tfl_load_warning {
+   font "gui/fonts/metron-bold14"
+   text "НЕ ВЫКЛЮЧАЙТЕ ИГРУ ДО ЗАВЕРШЕНИЯ ЗАГРУЗКИ"
+   "text color" 0.360784 0.388235 0.376471 1
+   "text valign" center
+   "text halign" left
+   position 0.045833 0.911111
+   size 0.364583 0.022222
+   color 1 1 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   "exact text" 1
+  }
+ }
 }

@@ -1,98 +1,269 @@
-// 06 LOGIN TIMER / 07 RESPAWN TIMER (id 6c) — одна панель на два режима.
-// Login: 600×300, марка olive, полоса обратного отсчёта 360×12.
-// Respawn: 600×340, марка и граница #8a5c5c, кнопка ВОЗРОДИТЬСЯ.
-// Режим переключает TFL_TimerView (скрывает лишний слот).
+// 06 LOGIN / 07 RESPAWN TIMER (id 6c). Сгенерирован tools/gen_layouts.py
 
-FrameWidgetClass TFL_TimerRoot
-{
-    position 0 0
-    size 1 1
-    {
-        PanelWidgetClass tfl_timer_dim { ignorepointer 1 position 0 0 size 1 1 color 0xcc090b0c }
-
-        PanelWidgetClass tfl_timer_panel
-        {
-            position 0.34375 0.342593
-            size 0.3125 0.314815
-            color 0xff23282a
-            {
-                PanelWidgetClass fill { ignorepointer 1 position 0.001667 0.002941 size 0.996667 0.994118 color 0xff141819 }
-                PanelWidgetClass tfl_timer_mark { ignorepointer 1 position 0 0 size 1 0.011765 color 0xff7c8563 }
-
-                TextWidgetClass tfl_timer_title
-                {
-                    ignorepointer 1
-                    position 0.066667 0.117647
-                    size 0.866667 0.088235
-                    text "ВХОД В МИР"
-                    color 0xffecede9
-                }
-
-                // 92px tabular, микропульс яркости 6% раз в секунду
-                TextWidgetClass tfl_timer_value
-                {
-                    ignorepointer 1
-                    position 0.066667 0.323529
-                    size 0.866667 0.294118
-                    text "00:00"
-                    color 0xffecede9
-                }
-
-                TextWidgetClass tfl_timer_subtitle
-                {
-                    ignorepointer 1
-                    position 0.066667 0.647059
-                    size 0.866667 0.076471
-                    text "Не отключайте игру во время подключения"
-                    color 0xff969b96
-                }
-
-                // login: полоса обратного отсчёта 360×12
-                PanelWidgetClass tfl_timer_track
-                {
-                    ignorepointer 1
-                    position 0.066667 0.779412
-                    size 0.6 0.035294
-                    color 0xff23282a
-                    {
-                        PanelWidgetClass bg   { ignorepointer 1 position 0.002778 0.083333 size 0.994444 0.833333 color 0xff101415 }
-                        PanelWidgetClass tfl_timer_fill { ignorepointer 1 position 0.002778 0.083333 size 0.994444 0.833333 color 0xff697254 }
-                    }
-                }
-
-                // respawn: кнопка 300×70, DISABLED до 00:00
-                ButtonWidgetClass tfl_timer_respawn
-                {
-                    position 0.066667 0.744118
-                    size 0.5 0.205882
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff4a3335 }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff121516 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x008a5c5c }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ВОЗРОДИТЬСЯ" color 0xff5a5e5b }
-                    }
-                }
-
-                TextWidgetClass tfl_timer_hint
-                {
-                    ignorepointer 1
-                    position 0.60 0.811765
-                    size 0.35 0.070588
-                    text "КНОПКА АКТИВНА ПРИ 00:00"
-                    color 0xff5c6360
-                }
-            }
-        }
-
-        // подпись персонажа под панелью (login)
-        TextWidgetClass tfl_timer_character
-        {
-            ignorepointer 1
-            position 0.34375 0.675926
-            size 0.3125 0.024074
-            text ""
-            color 0xff5c6360
-        }
+PanelWidgetClass TFL_TimerRoot {
+ position 0 0
+ size 1 1
+ color 0 0 0 0
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass tfl_timer_dim {
+   position 0 0
+   size 1 1
+   color 0.035294 0.043137 0.047059 0.8
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfl_timer_panel {
+   position 0.34375 0.342593
+   size 0.3125 0.314815
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ImageWidgetClass border {
+     position 0 0
+     size 1 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
     }
+    ImageWidgetClass fill {
+     position 0.001667 0.002941
+     size 0.996667 0.994118
+     color 0.078431 0.094118 0.098039 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tfl_timer_mark {
+     position 0 0
+     size 1 0.011765
+     color 0.486275 0.521569 0.388235 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    TextWidgetClass tfl_timer_title {
+     font "gui/fonts/etelkatextpro22"
+     text "ВХОД В МИР"
+     "text color" 0.92549 0.929412 0.913725 1
+     "text valign" center
+     "text halign" center
+     position 0.066667 0.117647
+     size 0.866667 0.088235
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_timer_value {
+     font "gui/fonts/etelkatextpro22"
+     text "00:00"
+     "text color" 0.92549 0.929412 0.913725 1
+     "text valign" center
+     "text halign" center
+     position 0.066667 0.323529
+     size 0.866667 0.294118
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_timer_subtitle {
+     font "gui/fonts/metron-bold14"
+     text "Не отключайте игру во время подключения"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" center
+     position 0.066667 0.647059
+     size 0.866667 0.076471
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    PanelWidgetClass tfl_timer_track {
+     position 0.066667 0.779412
+     size 0.6 0.035294
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     {
+      ImageWidgetClass bg {
+       position 0 0
+       size 1 1
+       color 0.062745 0.078431 0.082353 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_timer_fill {
+       position 0 0
+       size 1 1
+       color 0.411765 0.447059 0.329412 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_timer_respawn {
+     position 0.066667 0.744118
+     size 0.5 0.205882
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.003333 0.014286
+       size 0.993333 0.971429
+       color 0.070588 0.082353 0.086275 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ВОЗРОДИТЬСЯ"
+       "text color" 0.352941 0.368627 0.356863 1
+       "text valign" center
+       "text halign" center
+       position 0.026667 0
+       size 0.946667 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    TextWidgetClass tfl_timer_hint {
+     font "gui/fonts/metron-bold14"
+     text "КНОПКА АКТИВНА ПРИ 00:00"
+     "text color" 0.360784 0.388235 0.376471 1
+     "text valign" center
+     "text halign" center
+     position 0.6 0.794118
+     size 0.333333 0.070588
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+   }
+  }
+  TextWidgetClass tfl_timer_character {
+   font "gui/fonts/metron-bold14"
+   text ""
+   "text color" 0.360784 0.388235 0.376471 1
+   "text valign" center
+   "text halign" center
+   position 0.34375 0.675926
+   size 0.3125 0.024074
+   color 1 1 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   "exact text" 1
+  }
+ }
 }

@@ -10,9 +10,8 @@ modded class MainMenu
     protected ImageWidget       m_TFLBg;
     protected Widget            m_TFLActionBar;
     protected Widget            m_TFLStatusBar;
-    protected Widget            m_TFLLogoTitle;
-    protected Widget            m_TFLLogoMark;
-    protected Widget            m_TFLLogoSub;
+    //! Логотип — одна текстура logo_main.paa (марка и подзаголовок внутри неё).
+    protected Widget            m_TFLLogo;
     protected PanelWidget       m_TFLDim;
 
     protected ref TFL_Tooltip   m_TFLTooltip;
@@ -73,9 +72,7 @@ modded class MainMenu
         m_TFLBg        = ImageWidget.Cast(m_TFLRoot.FindAnyWidget("tfl_bg"));
         m_TFLActionBar = m_TFLRoot.FindAnyWidget("tfl_action_bar");
         m_TFLStatusBar = m_TFLRoot.FindAnyWidget("tfl_status_bar");
-        m_TFLLogoTitle = m_TFLRoot.FindAnyWidget("tfl_logo_title");
-        m_TFLLogoMark  = m_TFLRoot.FindAnyWidget("tfl_logo_mark");
-        m_TFLLogoSub   = m_TFLRoot.FindAnyWidget("tfl_logo_sub");
+        m_TFLLogo      = m_TFLRoot.FindAnyWidget("tfl_logo_title");
         m_TFLDim       = PanelWidget.Cast(m_TFLRoot.FindAnyWidget("tfl_dim"));
 
         m_TFLTooltip = new TFL_Tooltip(
@@ -507,9 +504,7 @@ modded class MainMenu
         float aBar    = Math.Clamp((ms -  80.0) / 260.0, 0, 1);
         float aStatus = Math.Clamp((ms - 140.0) / 240.0, 0, 1);
 
-        if (m_TFLLogoTitle) m_TFLLogoTitle.SetAlpha(aLogo);
-        if (m_TFLLogoMark)  m_TFLLogoMark.SetAlpha(aLogo);
-        if (m_TFLLogoSub)   m_TFLLogoSub.SetAlpha(aLogo);
+        if (m_TFLLogo)      m_TFLLogo.SetAlpha(aLogo);
         if (m_TFLActionBar) m_TFLActionBar.SetAlpha(aBar);
         if (m_TFLStatusBar) m_TFLStatusBar.SetAlpha(aStatus);
     }

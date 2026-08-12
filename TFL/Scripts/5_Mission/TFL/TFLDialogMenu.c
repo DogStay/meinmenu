@@ -101,7 +101,12 @@ class TFL_DialogMenu extends UIScriptedMenu
         MultilineTextWidget text = MultilineTextWidget.Cast(layoutRoot.FindAnyWidget("tfl_dialog_text"));
         TextWidget code  = TextWidget.Cast(layoutRoot.FindAnyWidget("tfl_dialog_code"));
         Widget     mark  = layoutRoot.FindAnyWidget("tfl_dialog_mark");
-        Widget     panel = layoutRoot.FindAnyWidget("tfl_dialog_panel");
+
+        // Границу панели рисует слой border внутри прозрачного контейнера.
+        Widget panel = layoutRoot.FindAnyWidget("tfl_dialog_panel");
+
+        if (panel)
+            panel = panel.FindAnyWidget("border");
 
         if (title) title.SetText(m_Title);
         if (text)  text.SetText(m_Text);

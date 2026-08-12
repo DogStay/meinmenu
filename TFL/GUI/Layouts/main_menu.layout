@@ -1,257 +1,947 @@
-FrameWidgetClass TFL_MainMenuRoot
-{
-    position 0 0
-    size 1 1
-    {
-        // ------------------------------------------------------------------
-        // BACKGROUND  (cinematic zoom 8% / 40s ping-pong -> TFLMainMenu.Update)
-        // ------------------------------------------------------------------
-        ImageWidgetClass tfl_bg
-        {
-            ignorepointer 1
-            position 0 0
-            size 1 1
-            image0 "TFL/GUI/textures/mainmenu_background.paa"
-            mode blend
-            "src alpha" 1
-            "stretch mode" 1
-            color 0xffffffff
-        }
+// 01 MAIN MENU (id 5a) + 02 HOVER (id 5b). Сгенерирован tools/gen_layouts.py
 
-        // Bottom gradient 0 -> 85% over the lowest 420px (7 bands, base #090B0C)
-        PanelWidgetClass tfl_grad_0 { ignorepointer 1 position 0 0.611111 size 1 0.055556 color 0x11090b0c }
-        PanelWidgetClass tfl_grad_1 { ignorepointer 1 position 0 0.666667 size 1 0.055556 color 0x30090b0c }
-        PanelWidgetClass tfl_grad_2 { ignorepointer 1 position 0 0.722222 size 1 0.055556 color 0x52090b0c }
-        PanelWidgetClass tfl_grad_3 { ignorepointer 1 position 0 0.777778 size 1 0.055556 color 0x77090b0c }
-        PanelWidgetClass tfl_grad_4 { ignorepointer 1 position 0 0.833333 size 1 0.055556 color 0x9c090b0c }
-        PanelWidgetClass tfl_grad_5 { ignorepointer 1 position 0 0.888889 size 1 0.055556 color 0xbe090b0c }
-        PanelWidgetClass tfl_grad_6 { ignorepointer 1 position 0 0.944444 size 1 0.055556 color 0xd9090b0c }
-
-        // Extra 8% dim, enabled only while a tooltip / hover is up (id 5b)
-        PanelWidgetClass tfl_dim
-        {
-            ignorepointer 1
-            position 0 0
-            size 1 1
-            color 0x00090b0c
-        }
-
-        // ------------------------------------------------------------------
-        // LOGO BLOCK  (centered X, y=180, 700x160)
-        // ------------------------------------------------------------------
-        TextWidgetClass tfl_logo_title
-        {
-            ignorepointer 1
-            position 0.317708 0.166667
-            size 0.364583 0.096296
-            text "THE FIRST LINE"
-            color 0xffecede9
-        }
-
-        PanelWidgetClass tfl_logo_mark
-        {
-            ignorepointer 1
-            position 0.475 0.277778
-            size 0.05 0.003704
-            color 0xff7c8563
-        }
-
-        TextWidgetClass tfl_logo_sub
-        {
-            ignorepointer 1
-            position 0.317708 0.292593
-            size 0.364583 0.027778
-            text "MILITARY ROLEPLAY"
-            color 0xff969b96
-        }
-
-        // ------------------------------------------------------------------
-        // TOOLTIP  (340x110, above SERVERS, 400ms delay -> TFLTooltip)
-        // ------------------------------------------------------------------
-        PanelWidgetClass tfl_tooltip
-        {
-            ignorepointer 1
-            position 0.269792 0.664815
-            size 0.177083 0.101852
-            color 0x0023282a
-            {
-                PanelWidgetClass fill
-                {
-                    ignorepointer 1
-                    position 0.002941 0.009091
-                    size 0.994118 0.981818
-                    color 0xff141819
-                }
-                TextWidgetClass tfl_tooltip_title
-                {
-                    ignorepointer 1
-                    position 0.070588 0.163636
-                    size 0.858824 0.245455
-                    text ""
-                    color 0xffecede9
-                }
-                TextWidgetClass tfl_tooltip_text
-                {
-                    ignorepointer 1
-                    position 0.070588 0.472727
-                    size 0.858824 0.363636
-                    text ""
-                    color 0xff969b96
-                }
-            }
-        }
-
-        PanelWidgetClass tfl_tooltip_arrow
-        {
-            ignorepointer 1
-            position 0.282292 0.766667
-            size 0.00625 0.007407
-            color 0x00141819
-        }
-
-        // ------------------------------------------------------------------
-        // ACTION BAR  (x=88, 1744x176, bottom stack: status 21 from bottom,
-        //              24 gap up to the bar -> bar y = 791)
-        // ------------------------------------------------------------------
-        PanelWidgetClass tfl_action_bar
-        {
-            position 0.045833 0.732407
-            size 0.908333 0.162963
-            color 0xe6141819
-            {
-                PanelWidgetClass top_line
-                {
-                    ignorepointer 1
-                    position 0 0
-                    size 1 0.005682
-                    color 0xff23282a
-                }
-
-                // ---- PLAY (primary, 370x104, olive fill + border + mark) ----
-                ButtonWidgetClass tfl_btn_play
-                {
-                    position 0.020642 0.204545
-                    size 0.212156 0.590909
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff7c8563 }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.002703 0.009615 size 0.994595 0.980769 color 0x29697254 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.961538 size 1 0.038462 color 0xff7c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ИГРАТЬ" color 0xffecede9 }
-                    }
-                }
-
-                // ---- SERVERS (secondary, 240x70) ----
-                ButtonWidgetClass tfl_btn_servers
-                {
-                    position 0.246560 0.301136
-                    size 0.137615 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.004167 0.014286 size 0.991667 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "СЕРВЕРЫ" color 0xffd6d7d2 }
-                    }
-                }
-
-                // ---- CHARACTER (secondary, 240x70) ----
-                ButtonWidgetClass tfl_btn_character
-                {
-                    position 0.397936 0.301136
-                    size 0.137615 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.004167 0.014286 size 0.991667 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ПЕРСОНАЖ" color 0xffd6d7d2 }
-                    }
-                }
-
-                // ---- SETTINGS (secondary, 240x70) ----
-                ButtonWidgetClass tfl_btn_settings
-                {
-                    position 0.549312 0.301136
-                    size 0.137615 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.004167 0.014286 size 0.991667 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "НАСТРОЙКИ" color 0xffd6d7d2 }
-                    }
-                }
-
-                // ---- divider 1x80 ----
-                PanelWidgetClass tfl_divider
-                {
-                    ignorepointer 1
-                    position 0.700688 0.272727
-                    size 0.000573 0.454545
-                    color 0xff23282a
-                }
-
-                // ---- DISCORD (icon, 96x70) ----
-                ButtonWidgetClass tfl_btn_discord
-                {
-                    position 0.715023 0.301136
-                    size 0.055046 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.010417 0.014286 size 0.979167 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "DS" color 0xffd6d7d2 }
-                    }
-                }
-
-                // ---- WEBSITE (icon, 96x70) ----
-                ButtonWidgetClass tfl_btn_website
-                {
-                    position 0.783830 0.301136
-                    size 0.055046 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.010417 0.014286 size 0.979167 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "WWW" color 0xffd6d7d2 }
-                    }
-                }
-
-                // ---- EXIT (danger, 228x70, right aligned) ----
-                ButtonWidgetClass tfl_btn_exit
-                {
-                    position 0.848624 0.301136
-                    size 0.130734 0.397727
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff4a3335 }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.004386 0.014286 size 0.991228 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x008a5c5c }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ВЫХОД" color 0xffd6d7d2 }
-                    }
-                }
-            }
-        }
-
-        // ------------------------------------------------------------------
-        // STATUS BAR  (x=88, 1744x68, 21 from bottom)
-        // ------------------------------------------------------------------
-        PanelWidgetClass tfl_status_bar
-        {
-            ignorepointer 1
-            position 0.045833 0.917593
-            size 0.908333 0.062963
-            color 0x00000000
-            {
-                TextWidgetClass tfl_status_online  { ignorepointer 1 position 0.000 0.25 size 0.130 0.5 text "ONLINE  --/--"      color 0xff969b96 }
-                TextWidgetClass tfl_status_server  { ignorepointer 1 position 0.140 0.25 size 0.150 0.5 text "SERVER  --"         color 0xff969b96 }
-                TextWidgetClass tfl_status_version { ignorepointer 1 position 0.300 0.25 size 0.130 0.5 text "VERSION --"         color 0xff969b96 }
-                TextWidgetClass tfl_status_ping    { ignorepointer 1 position 0.440 0.25 size 0.130 0.5 text "PING    -- ms"      color 0xff969b96 }
-                TextWidgetClass tfl_status_line    { ignorepointer 1 position 0.600 0.25 size 0.400 0.5 text ""                   color 0xff5c6360 }
-            }
-        }
+PanelWidgetClass TFL_MainMenuRoot {
+ position 0 0
+ size 1 1
+ color 0 0 0 0
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass tfl_bg {
+   position 0 0
+   size 1 1
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/mainmenu_background.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_vignette {
+   position 0 0
+   size 1 1
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/vignette.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_scrim_0 {
+   position 0 0
+   size 1 0.086111
+   color 0.035294 0.043137 0.047059 0.45
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_scrim_1 {
+   position 0 0.085185
+   size 1 0.086111
+   color 0.035294 0.043137 0.047059 0.314888
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_scrim_2 {
+   position 0 0.17037
+   size 1 0.086111
+   color 0.035294 0.043137 0.047059 0.198726
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_scrim_3 {
+   position 0 0.255556
+   size 1 0.086111
+   color 0.035294 0.043137 0.047059 0.103874
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_scrim_4 {
+   position 0 0.340741
+   size 1 0.086111
+   color 0.035294 0.043137 0.047059 0.034266
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_0 {
+   position 0 0.611111
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.03778
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_1 {
+   position 0 0.666667
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.114528
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_2 {
+   position 0 0.722222
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.219107
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_3 {
+   position 0 0.777778
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.347183
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_4 {
+   position 0 0.833333
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.496151
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_5 {
+   position 0 0.888889
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.664208
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_grad_6 {
+   position 0 0.944444
+   size 1 0.056481
+   color 0.035294 0.043137 0.047059 0.85
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_dim {
+   position 0 0
+   size 1 1
+   color 0.035294 0.043137 0.047059 0
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  ImageWidgetClass tfl_logo_title {
+   position 0.317708 0.159259
+   size 0.364583 0.162037
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/logo_main.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfl_tooltip {
+   position 0.269792 0.664815
+   size 0.177083 0.101852
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   {
+    ImageWidgetClass border {
+     position 0 0
+     size 1 1
+     color 0.137255 0.156863 0.164706 0
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
     }
+    ImageWidgetClass fill {
+     position 0.002941 0.009091
+     size 0.994118 0.981818
+     color 0.078431 0.094118 0.098039 0
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    TextWidgetClass tfl_tooltip_title {
+     font "gui/fonts/etelkatextpro22"
+     text ""
+     "text color" 0.92549 0.929412 0.913725 1
+     "text valign" center
+     "text halign" left
+     position 0.070588 0.218182
+     size 0.858824 0.272727
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_tooltip_text {
+     font "gui/fonts/metron-bold14"
+     text ""
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" left
+     position 0.070588 0.527273
+     size 0.858824 0.254545
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+   }
+  }
+  ImageWidgetClass tfl_tooltip_arrow {
+   position 0.282292 0.766667
+   size 0.00625 0.007407
+   color 0.078431 0.094118 0.098039 0
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfl_action_bar {
+   position 0.045833 0.732407
+   size 0.908333 0.162963
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ImageWidgetClass bar_bg {
+     position 0 0
+     size 1 1
+     color 0.078431 0.094118 0.098039 0.9
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass bar_top {
+     position 0 0
+     size 1 0.005682
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ButtonWidgetClass tfl_btn_play {
+     position 0.020642 0.204545
+     size 0.212156 0.590909
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.486275 0.521569 0.388235 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.002703 0.009615
+       size 0.994595 0.980769
+       color 0.133333 0.14902 0.133333 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.961538
+       size 1 0.038462
+       color 0.486275 0.521569 0.388235 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ИГРАТЬ"
+       "text color" 0.92549 0.929412 0.913725 1
+       "text valign" center
+       "text halign" center
+       position 0.021622 0
+       size 0.956757 0.961538
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_btn_servers {
+     position 0.24656 0.301136
+     size 0.137615 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.004167 0.014286
+       size 0.991667 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "СЕРВЕРЫ"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.033333 0
+       size 0.933333 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_btn_character {
+     position 0.397936 0.301136
+     size 0.137615 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.004167 0.014286
+       size 0.991667 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ПЕРСОНАЖ"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.033333 0
+       size 0.933333 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_btn_settings {
+     position 0.549312 0.301136
+     size 0.137615 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.004167 0.014286
+       size 0.991667 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "НАСТРОЙКИ"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.033333 0
+       size 0.933333 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    ImageWidgetClass tfl_divider {
+     position 0.700688 0.272727
+     size 0.000573 0.454545
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ButtonWidgetClass tfl_btn_discord {
+     position 0.715023 0.301136
+     size 0.055046 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.010417 0.014286
+       size 0.979167 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass icon {
+       position 0.354167 0.3
+       size 0.291667 0.4
+       color 0.839216 0.843137 0.823529 1
+       image0 "TFL/GUI/textures/icon_discord.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_btn_website {
+     position 0.78383 0.301136
+     size 0.055046 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.010417 0.014286
+       size 0.979167 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass icon {
+       position 0.354167 0.3
+       size 0.291667 0.4
+       color 0.839216 0.843137 0.823529 1
+       image0 "TFL/GUI/textures/icon_website.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_btn_exit {
+     position 0.848624 0.301136
+     size 0.130734 0.397727
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.290196 0.2 0.207843 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.004386 0.014286
+       size 0.991228 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.541176 0.360784 0.360784 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ВЫХОД"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.035088 0
+       size 0.929825 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass tfl_status_bar {
+   position 0.045833 0.917593
+   size 0.908333 0.062963
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+   {
+    TextWidgetClass tfl_status_online {
+     font "gui/fonts/metron-bold14"
+     text "ONLINE  --/--"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" left
+     position 0 0.25
+     size 0.126147 0.5
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_status_server {
+     font "gui/fonts/metron-bold14"
+     text "SERVER  --"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" left
+     position 0.139908 0.25
+     size 0.149083 0.5
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_status_version {
+     font "gui/fonts/metron-bold14"
+     text "VERSION --"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" left
+     position 0.300459 0.25
+     size 0.126147 0.5
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_status_ping {
+     font "gui/fonts/metron-bold14"
+     text "PING    -- ms"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" left
+     position 0.438073 0.25
+     size 0.114679 0.5
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_status_line {
+     font "gui/fonts/metron-bold14"
+     text ""
+     "text color" 0.360784 0.388235 0.376471 1
+     "text valign" center
+     "text halign" right
+     position 0.600917 0.25
+     size 0.399083 0.5
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+   }
+  }
+ }
 }

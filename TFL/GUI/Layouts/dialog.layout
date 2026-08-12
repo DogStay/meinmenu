@@ -1,87 +1,280 @@
-// 09/10 DIALOGS (id 7a) — одна панель panel_dialog 720×360 на все типы.
-// Различаются только цветом акцентной марки, границы и набором кнопок.
-// Esc = отмена, Enter = подтверждение (TFL_DialogMenu).
+// 09/10 DIALOGS (id 7a). Сгенерирован tools/gen_layouts.py
 
-FrameWidgetClass TFL_DialogRoot
-{
-    position 0 0
-    size 1 1
-    {
-        // затемнение сцены 70% (blur 8px требует PAA — см. README)
-        PanelWidgetClass tfl_dialog_dim { ignorepointer 1 position 0 0 size 1 1 color 0xb3090b0c }
-
-        PanelWidgetClass tfl_dialog_panel
-        {
-            position 0.3125 0.333333
-            size 0.375 0.333333
-            color 0xff23282a
-            {
-                PanelWidgetClass fill { ignorepointer 1 position 0.001389 0.002778 size 0.997222 0.994444 color 0xff141819 }
-                PanelWidgetClass tfl_dialog_mark { ignorepointer 1 position 0 0 size 1 0.011111 color 0xff7c8563 }
-
-                TextWidgetClass tfl_dialog_title
-                {
-                    ignorepointer 1
-                    position 0.055556 0.111111
-                    size 0.888889 0.083333
-                    text "ПОДТВЕРЖДЕНИЕ"
-                    color 0xffecede9
-                }
-
-                MultilineTextWidgetClass tfl_dialog_text
-                {
-                    ignorepointer 1
-                    position 0.055556 0.277778
-                    size 0.888889 0.216667
-                    text ""
-                    color 0xffd6d7d2
-                }
-
-                // строка кода ошибки (только для ОШИБКА ПОДКЛЮЧЕНИЯ)
-                TextWidgetClass tfl_dialog_code
-                {
-                    ignorepointer 1
-                    position 0.055556 0.527778
-                    size 0.888889 0.055556
-                    text ""
-                    color 0xff8a5c5c
-                }
-
-                // футер отделён линией 1px
-                PanelWidgetClass tfl_dialog_sep
-                {
-                    ignorepointer 1
-                    position 0.055556 0.627778
-                    size 0.888889 0.002778
-                    color 0xff23282a
-                }
-
-                ButtonWidgetClass tfl_dialog_btn_left
-                {
-                    position 0.077778 0.694444
-                    size 0.416667 0.194444
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff23282a }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x007c8563 }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ОТМЕНА" color 0xffd6d7d2 }
-                    }
-                }
-
-                ButtonWidgetClass tfl_dialog_btn_right
-                {
-                    position 0.527778 0.694444
-                    size 0.416667 0.194444
-                    color 0x00000000
-                    {
-                        PanelWidgetClass border { ignorepointer 1 position 0 0 size 1 1 color 0xff4a3335 }
-                        PanelWidgetClass fill   { ignorepointer 1 position 0.003333 0.014286 size 0.993333 0.971429 color 0xff141819 }
-                        PanelWidgetClass mark   { ignorepointer 1 position 0 0.942857 size 1 0.057143 color 0x008a5c5c }
-                        TextWidgetClass  label  { ignorepointer 1 position 0 0 size 1 1 text "ВЫЙТИ" color 0xffd6d7d2 }
-                    }
-                }
-            }
-        }
+PanelWidgetClass TFL_DialogRoot {
+ position 0 0
+ size 1 1
+ color 0 0 0 0
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass tfl_dialog_dim {
+   position 0 0
+   size 1 1
+   color 0.035294 0.043137 0.047059 0.7
+   image0 "TFL/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfl_dialog_panel {
+   position 0.3125 0.333333
+   size 0.375 0.333333
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ImageWidgetClass border {
+     position 0 0
+     size 1 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
     }
+    ImageWidgetClass fill {
+     position 0.001389 0.002778
+     size 0.997222 0.994444
+     color 0.078431 0.094118 0.098039 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tfl_dialog_mark {
+     position 0 0
+     size 1 0.011111
+     color 0.486275 0.521569 0.388235 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    TextWidgetClass tfl_dialog_title {
+     font "gui/fonts/etelkatextpro22"
+     text "ПОДТВЕРЖДЕНИЕ"
+     "text color" 0.92549 0.929412 0.913725 1
+     "text valign" center
+     "text halign" left
+     position 0.055556 0.111111
+     size 0.888889 0.083333
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    MultilineTextWidgetClass tfl_dialog_text {
+     font "gui/fonts/etelkatextpro22"
+     text ""
+     "text color" 0.839216 0.843137 0.823529 1
+     "text valign" center
+     "text halign" left
+     position 0.055556 0.277778
+     size 0.888889 0.216667
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_dialog_code {
+     font "gui/fonts/metron-bold14"
+     text ""
+     "text color" 0.541176 0.360784 0.360784 1
+     "text valign" center
+     "text halign" left
+     position 0.055556 0.527778
+     size 0.888889 0.066667
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    ImageWidgetClass tfl_dialog_sep {
+     position 0.055556 0.627778
+     size 0.888889 0.002778
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFL/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ButtonWidgetClass tfl_dialog_btn_left {
+     position 0.077778 0.694444
+     size 0.416667 0.194444
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.003333 0.014286
+       size 0.993333 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ОТМЕНА"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.026667 0
+       size 0.946667 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    ButtonWidgetClass tfl_dialog_btn_right {
+     position 0.527778 0.694444
+     size 0.416667 0.194444
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.290196 0.2 0.207843 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.003333 0.014286
+       size 0.993333 0.971429
+       color 0.078431 0.094118 0.098039 1
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.541176 0.360784 0.360784 0
+       image0 "TFL/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ВЫЙТИ"
+       "text color" 0.839216 0.843137 0.823529 1
+       "text valign" center
+       "text halign" center
+       position 0.026667 0
+       size 0.946667 0.942857
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+   }
+  }
+ }
 }

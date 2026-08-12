@@ -4,6 +4,8 @@
 class TFL_Tooltip
 {
     protected Widget     m_Root;
+    protected Widget     m_Border;
+    protected Widget     m_Fill;
     protected Widget     m_Arrow;
     protected TextWidget m_Title;
     protected TextWidget m_Text;
@@ -19,8 +21,10 @@ class TFL_Tooltip
 
         if (m_Root)
         {
-            m_Title = TextWidget.Cast(m_Root.FindAnyWidget("tfl_tooltip_title"));
-            m_Text  = TextWidget.Cast(m_Root.FindAnyWidget("tfl_tooltip_text"));
+            m_Border = m_Root.FindAnyWidget("border");
+            m_Fill   = m_Root.FindAnyWidget("fill");
+            m_Title  = TextWidget.Cast(m_Root.FindAnyWidget("tfl_tooltip_title"));
+            m_Text   = TextWidget.Cast(m_Root.FindAnyWidget("tfl_tooltip_text"));
         }
 
         Apply(0);
@@ -74,11 +78,12 @@ class TFL_Tooltip
 
     protected void Apply(float alpha)
     {
-        if (m_Root)
-        {
-            m_Root.SetColor(TFL_Theme.WithAlpha(TFL_Theme.BORDER, alpha));
-            m_Root.SetAlpha(alpha);
-        }
+        // Гасим слои по отдельности: у каждого своя альфа, гашение
+        // контейнера на них не распространяется.
+        if (m_Border) m_Border.SetColor(TFL_Theme.WithAlpha(TFL_Theme.BORDER, alpha));
+        if (m_Fill)   m_Fill.SetColor(TFL_Theme.WithAlpha(TFL_Theme.PANEL, alpha));
+        if (m_Title)  m_Title.SetAlpha(alpha);
+        if (m_Text)   m_Text.SetAlpha(alpha);
 
         if (m_Arrow)
             m_Arrow.SetColor(TFL_Theme.WithAlpha(TFL_Theme.PANEL, alpha));

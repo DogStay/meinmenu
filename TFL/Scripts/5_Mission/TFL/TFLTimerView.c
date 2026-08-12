@@ -41,7 +41,12 @@ class TFL_TimerView
             return;
         }
 
-        m_Panel     = m_Root.FindAnyWidget("tfl_timer_panel");
+        // Цвет панели несёт слой border внутри контейнера, а не сам контейнер:
+        // контейнер прозрачный (color 0 0 0 0), заливку рисует ImageWidget.
+        Widget panel = m_Root.FindAnyWidget("tfl_timer_panel");
+
+        if (panel)
+            m_Panel = panel.FindAnyWidget("border");
         m_Mark      = m_Root.FindAnyWidget("tfl_timer_mark");
         m_Title     = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_title"));
         m_Value     = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_value"));

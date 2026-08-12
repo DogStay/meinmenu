@@ -25,6 +25,7 @@ class TFL_MenuButton
     protected PanelWidget   m_Fill;
     protected PanelWidget   m_Mark;
     protected TextWidget    m_Label;
+    protected ImageWidget   m_Icon;     //!< кнопки-иконки (DISCORD / WEBSITE)
 
     protected TFL_BtnStyle  m_Style;
     protected TFL_BtnState  m_State;
@@ -54,6 +55,7 @@ class TFL_MenuButton
         m_Fill   = PanelWidget.Cast(m_Root.FindAnyWidget("fill"));
         m_Mark   = PanelWidget.Cast(m_Root.FindAnyWidget("mark"));
         m_Label  = TextWidget.Cast(m_Root.FindAnyWidget("label"));
+        m_Icon   = ImageWidget.Cast(m_Root.FindAnyWidget("icon"));
 
         if (m_Label)
         {
@@ -170,6 +172,7 @@ class TFL_MenuButton
         if (m_Fill)   m_Fill.SetColor(m_CurFill);
         if (m_Mark)   m_Mark.SetColor(m_CurMark);
         if (m_Label)  m_Label.SetColor(m_CurText);
+        if (m_Icon)   m_Icon.SetColor(m_CurText);   //!< иконка тонируется как текст
     }
 
     protected void ApplyImmediate(TFL_BtnState state)
@@ -203,7 +206,7 @@ class TFL_MenuButton
             borderHover  = TFL_Theme.OLIVE_HOVER;
             fillNormal   = TFL_Theme.PRIMARY_FILL;
             fillHover    = TFL_Theme.PRIMARY_FILL_HOVER;
-            fillPressed  = TFL_Theme.WithAlpha(TFL_Theme.OLIVE_PRESSED, 0.20);
+            fillPressed  = TFL_Theme.PRIMARY_FILL_PRESS;
         }
         else if (m_Style == TFL_BtnStyle.DANGER)
         {

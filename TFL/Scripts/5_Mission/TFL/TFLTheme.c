@@ -43,9 +43,12 @@ class TFL_Theme
     static const int BTN_PRESSED     = 0xff0f1213;
     static const int BTN_DISABLED    = 0xff121516;
 
-    // PRIMARY — заливка olive 12–20%
-    static const int PRIMARY_FILL       = 0x1f697254;
-    static const int PRIMARY_FILL_HOVER = 0x33697254;
+    // PRIMARY — заливка olive 12–20%, посчитанная заранее и НЕПРОЗРАЧНАЯ:
+    // полупрозрачный слой поверх olive-границы залил бы кнопку целиком,
+    // потому что граница лежит под заливкой во всю её площадь.
+    static const int PRIMARY_FILL       = 0xff222622;   // olive 16% на #141819
+    static const int PRIMARY_FILL_HOVER = 0xff2a2f28;   // olive 26% на #141819
+    static const int PRIMARY_FILL_PRESS = 0xff1f231e;   // olive 20% на #0F1213
 
     static const int TRANSPARENT     = 0x00000000;
 
