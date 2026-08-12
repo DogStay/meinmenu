@@ -66,8 +66,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.04617 0.035026
-     size 0.289679 0.045534
+     position 0.04617 0.04028
+     size 0.289679 0.035026
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -82,8 +82,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.364817 0.035026
-     size 0.135183 0.045534
+     position 0.364817 0.04028
+     size 0.135183 0.035026
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -98,8 +98,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.519312 0.035026
-     size 0.115872 0.045534
+     position 0.519312 0.04028
+     size 0.115872 0.035026
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -114,8 +114,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.654495 0.035026
-     size 0.135183 0.045534
+     position 0.654495 0.04028
+     size 0.135183 0.035026
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -130,8 +130,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.808991 0.035026
-     size 0.09656 0.045534
+     position 0.808991 0.04028
+     size 0.09656 0.035026
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -211,8 +211,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -227,8 +227,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -243,8 +243,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -259,8 +259,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -275,8 +275,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -344,8 +344,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -360,8 +360,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -376,8 +376,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -392,8 +392,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -408,8 +408,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -477,8 +477,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -493,8 +493,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -509,8 +509,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -525,8 +525,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -541,8 +541,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -610,8 +610,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -626,8 +626,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -642,8 +642,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -658,8 +658,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -674,8 +674,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -743,8 +743,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -759,8 +759,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -775,8 +775,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -791,8 +791,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -807,8 +807,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -876,8 +876,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.037126 0.296875
-       size 0.285748 0.40625
+       position 0.037126 0.3125
+       size 0.285748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -892,8 +892,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.367126 0.296875
-       size 0.125748 0.40625
+       position 0.367126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -908,8 +908,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.527126 0.296875
-       size 0.105748 0.40625
+       position 0.527126 0.3125
+       size 0.105748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -924,8 +924,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.667126 0.296875
-       size 0.125748 0.40625
+       position 0.667126 0.3125
+       size 0.125748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -940,8 +940,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" left
-       position 0.827126 0.296875
-       size 0.085748 0.40625
+       position 0.827126 0.3125
+       size 0.085748 0.375
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -958,8 +958,8 @@ PanelWidgetClass TFL_SectionRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.017202 0.789842
-     size 0.579358 0.105079
+     position 0.017202 0.823117
+     size 0.579358 0.038529
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -1025,8 +1025,8 @@ PanelWidgetClass TFL_SectionRoot {
        "text color" 0.92549 0.929412 0.913725 1
        "text valign" center
        "text halign" center
-       position 0.026667 0
-       size 0.946667 0.942857
+       position 0.066667 0.242857
+       size 0.866667 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0

@@ -277,8 +277,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.92549 0.929412 0.913725 1
      "text valign" center
      "text halign" left
-     position 0.070588 0.218182
-     size 0.858824 0.272727
+     position 0.070588 0.245455
+     size 0.858824 0.218182
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -293,8 +293,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.070588 0.527273
-     size 0.858824 0.254545
+     position 0.070588 0.563636
+     size 0.858824 0.181818
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -413,8 +413,8 @@ PanelWidgetClass TFL_MainMenuRoot {
        "text color" 0.92549 0.929412 0.913725 1
        "text valign" center
        "text halign" center
-       position 0.021622 0
-       size 0.956757 0.961538
+       position 0.054054 0.326923
+       size 0.891892 0.307692
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -482,8 +482,8 @@ PanelWidgetClass TFL_MainMenuRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" center
-       position 0.033333 0
-       size 0.933333 0.942857
+       position 0.083333 0.242857
+       size 0.833333 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -551,8 +551,8 @@ PanelWidgetClass TFL_MainMenuRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" center
-       position 0.033333 0
-       size 0.933333 0.942857
+       position 0.083333 0.242857
+       size 0.833333 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -620,8 +620,8 @@ PanelWidgetClass TFL_MainMenuRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" center
-       position 0.033333 0
-       size 0.933333 0.942857
+       position 0.083333 0.242857
+       size 0.833333 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -837,8 +837,8 @@ PanelWidgetClass TFL_MainMenuRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" center
-       position 0.035088 0
-       size 0.929825 0.942857
+       position 0.087719 0.242857
+       size 0.824561 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -867,8 +867,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0 0.25
-     size 0.126147 0.5
+     position 0 0.352941
+     size 0.126147 0.294118
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -883,8 +883,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.139908 0.25
-     size 0.149083 0.5
+     position 0.139908 0.352941
+     size 0.149083 0.294118
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -899,8 +899,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.300459 0.25
-     size 0.126147 0.5
+     position 0.300459 0.352941
+     size 0.126147 0.294118
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -915,8 +915,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.438073 0.25
-     size 0.114679 0.5
+     position 0.438073 0.352941
+     size 0.114679 0.294118
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -931,8 +931,8 @@ PanelWidgetClass TFL_MainMenuRoot {
      "text color" 0.360784 0.388235 0.376471 1
      "text valign" center
      "text halign" right
-     position 0.600917 0.25
-     size 0.399083 0.5
+     position 0.600917 0.352941
+     size 0.399083 0.294118
      color 1 1 1 1
      hexactpos 0
      vexactpos 0

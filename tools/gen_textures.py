@@ -23,6 +23,9 @@ OUT = os.path.join(ROOT, "TFL", "GUI", "textures")
 
 FONTS = "/mnt/skills/examples/canvas-design/canvas-fonts"
 FONT_CONDENSED = os.path.join(FONTS, "BigShoulders-Bold.ttf")
+# Крупные числа набираются светлым начертанием: жирное в кегле 88–92
+# выглядит грузно, хендофф задаёт вес 600, а не 700.
+FONT_NUMERIC = os.path.join(FONTS, "BigShoulders-Regular.ttf")
 
 spec = importlib.util.spec_from_file_location("paa", os.path.join(HERE, "png_to_paa.py"))
 paa = importlib.util.module_from_spec(spec)
@@ -64,7 +67,7 @@ def logo(width, height, title_px, rule_w, rule_h, sub_px, gap_a, gap_b, subtitle
 
     # Трекинг 0.20em ощутимо расширяет строку — кегль подгоняется так,
     # чтобы строка вместе с трекингом влезла в холст с полями.
-    limit = width * 0.94
+    limit = width * 0.84
 
     while title_px > 8:
         f_title = ImageFont.truetype(FONT_CONDENSED, title_px)
@@ -174,8 +177,11 @@ def digit(char, w=64, h=128):
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
 
-    size = int(h * 0.82)
-    font = ImageFont.truetype(FONT_CONDENSED, size)
+    # Глиф занимает ~2/3 площадки: это высота прописной у шрифта такого
+    # кегля. Без этого запаса цифры упираются в края и выглядят крупнее,
+    # чем задумано.
+    size = int(h * 0.66)
+    font = ImageFont.truetype(FONT_NUMERIC, size)
     box = font.getbbox(char)
 
     d.text(((w - (box[2] - box[0])) / 2 - box[0],

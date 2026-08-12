@@ -153,10 +153,74 @@ def fill(doc, depth, name, ctx, box, colour, alpha=1.0):
            color=rgba(colour, alpha), image=FILL)
 
 
-def label(doc, depth, name, ctx, box, text, colour, font=FONT_BODY,
+# --- типографская шкала хендоффа -------------------------------------------
+# TITLE 64–96 · SUBTITLE 30 · BUTTON 32 · BODY 26 · SMALL 20
+#
+# Высота текстового виджета задаёт кегль строки, поэтому бокс равен КЕГЛЮ и
+# центрируется в отведённом месте. Если растянуть его на всю строку, буквы
+# упираются в края и выглядят несоразмерно крупными.
+TYPE_SIZE = {
+    "tfl_tooltip_title": 24, "tfl_tooltip_text": 20,
+
+    "tfl_hint_category": 20, "tfl_hint_title": 34,
+    "tfl_hint_desc": 26,     "tfl_hint_counter": 20,
+
+    "tfl_load_label": 22,    "tfl_progress_percent": 40,
+    "tfl_load_caption": 20,  "tfl_load_warning": 20,
+
+    "tfl_queue_title": 30,   "tfl_queue_label": 26,
+    "tfl_queue_total": 36,   "tfl_queue_waiting": 22,
+    "tfl_queue_caption": 20,
+
+    "tfl_timer_title": 30,   "tfl_timer_subtitle": 24,
+    "tfl_timer_character": 20, "tfl_timer_hint": 20,
+
+    "tfl_dialog_title": 30,  "tfl_dialog_text": 26, "tfl_dialog_code": 20,
+
+    "tfl_section_desc": 22,
+
+    "label": 32,             # подпись кнопки
+}
+
+TYPE_DEFAULT = 24
+
+
+def type_size(name):
+    if name in TYPE_SIZE:
+        return TYPE_SIZE[name]
+    if name.startswith("tfl_status_") or name.startswith("hdr_"):
+        return 20
+    if name in ("name", "map", "players", "mode", "ping"):
+        return 24
+    return TYPE_DEFAULT
+
+
+def type_box(name, box):
+    """Бокс высотой в кегль, по центру отведённой строки."""
+    x, y, w, h = box
+    size = type_size(name)
+    return (x, y + (h - size) / 2.0, w, size)
+
+
+def label(doc, depth, name, ctx, box, text, colour, font=None,
           halign="center"):
-    widget(doc, depth, "TextWidgetClass", name, ctx, box, text=text,
-           color="1 1 1 1", textcolor=rgba(colour), font=font, halign=halign)
+    if font is None:
+        font = FONT_MICRO if type_size(name) <= 22 else FONT_BODY
+
+    widget(doc, depth, "TextWidgetClass", name, ctx, type_box(name, box),
+           text=text, color="1 1 1 1", textcolor=rgba(colour), font=font,
+           halign=halign)
+
+
+def multiline(doc, depth, name, ctx, box, colour, halign="left", lines=3):
+    """Многострочный текст: высота = кегль × число строк × межстрочный 1.5."""
+    x, y, w, h = box
+    size = type_size(name)
+    total = size * 1.5 * lines
+
+    widget(doc, depth, "MultilineTextWidgetClass", name, ctx,
+           (x, y + (h - total) / 2.0, w, total), text="", color="1 1 1 1",
+           textcolor=rgba(colour), font=FONT_BODY, halign=halign)
 
 
 def container(doc, depth, name, ctx, box, children, ignore=False):
@@ -206,8 +270,8 @@ def button(doc, depth, name, ctx, box, text, *, style="secondary",
                    (x + (w - size) / 2, y + (h - size) / 2, size, size),
                    color=rgba(text_c), image=icon)
         else:
-            label(doc, d, "label", inner, (x + 8, y, w - 16, h - 4), text, text_c,
-                  font=font)
+            label(doc, d, "label", inner, (x + 20, y, w - 40, h - 4), text,
+                  text_c, font=font)
 
     widget(doc, depth, "ButtonWidgetClass", name, ctx, box, color="0 0 0 0",
            children=kids)
@@ -223,9 +287,9 @@ def digit_row(doc, depth, ctx, name, x, y, h, pattern, center=False):
 
     pattern: строка вида "dd:dd" — d = слот цифры, : = разделитель.
     center: x задаёт центр строки, иначе — её левый край."""
-    dw = h * 0.46
-    sw = h * 0.22
-    gap = h * 0.05
+    dw = h * 0.44
+    sw = h * 0.20
+    gap = h * 0.03
 
     total = 0
     for ch in pattern:
@@ -416,9 +480,8 @@ def hint_card(name, box_w, box_h, *, image, wide=False, arrows=True):
               C_OLIVE, font=FONT_MICRO, halign="left")
         label(doc, d, "tfl_hint_title", ctx, (tx, top + 40, tw, 40), "",
               C_TEXT, halign="left")
-        widget(doc, d, "MultilineTextWidgetClass", "tfl_hint_desc", ctx,
-               (tx, top + 96, tw, 117), text="", color="1 1 1 1",
-               textcolor=rgba(C_TEXT_DIM), font=FONT_BODY, halign="left")
+        multiline(doc, d, "tfl_hint_desc", ctx, (tx, top + 96, tw, 117),
+                  C_TEXT_DIM)
 
         label(doc, d, "tfl_hint_counter", ctx,
               (tx, box_h - pad - 24, tw * 0.5, 24), "", C_TEXT_2ND,
@@ -676,9 +739,8 @@ def dialog():
 
             label(doc, dd, "tfl_dialog_title", panel, (640, 400, 640, 30),
                   "ПОДТВЕРЖДЕНИЕ", C_TEXT, halign="left")
-            widget(doc, dd, "MultilineTextWidgetClass", "tfl_dialog_text", panel,
-                   (640, 460, 640, 78), text="", color="1 1 1 1",
-                   textcolor=rgba(C_TEXT_DIM), font=FONT_BODY, halign="left")
+            multiline(doc, dd, "tfl_dialog_text", panel, (640, 460, 640, 78),
+                      C_TEXT_DIM, lines=2)
             label(doc, dd, "tfl_dialog_code", panel, (640, 550, 640, 24), "",
                   C_RED, font=FONT_MICRO, halign="left")
 

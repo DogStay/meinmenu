@@ -110,8 +110,8 @@ PanelWidgetClass TFL_LoadingRoot {
    "text color" 0.588235 0.607843 0.588235 1
    "text valign" center
    "text halign" left
-   position 0.045833 0.792593
-   size 0.208333 0.024074
+   position 0.045833 0.794444
+   size 0.208333 0.02037
    color 1 1 1 1
    hexactpos 0
    vexactpos 0
@@ -252,8 +252,8 @@ PanelWidgetClass TFL_LoadingRoot {
    "text color" 0.360784 0.388235 0.376471 1
    "text valign" center
    "text halign" left
-   position 0.045833 0.881481
-   size 0.364583 0.022222
+   position 0.045833 0.883333
+   size 0.364583 0.018519
    color 1 1 1 1
    hexactpos 0
    vexactpos 0
@@ -268,8 +268,8 @@ PanelWidgetClass TFL_LoadingRoot {
    "text color" 0.360784 0.388235 0.376471 1
    "text valign" center
    "text halign" left
-   position 0.045833 0.911111
-   size 0.364583 0.022222
+   position 0.045833 0.912963
+   size 0.364583 0.018519
    color 1 1 1 1
    hexactpos 0
    vexactpos 0

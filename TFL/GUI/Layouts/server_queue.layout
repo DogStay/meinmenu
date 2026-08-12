@@ -108,8 +108,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.92549 0.929412 0.913725 1
      "text valign" center
      "text halign" left
-     position 0.05 0.1
-     size 0.9 0.066667
+     position 0.05 0.097619
+     size 0.9 0.071429
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -124,8 +124,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.05 0.190476
-     size 0.9 0.052381
+     position 0.05 0.185714
+     size 0.9 0.061905
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -136,7 +136,7 @@ PanelWidgetClass TFL_QueueRoot {
     }
     PanelWidgetClass tfl_queue_digits {
      position 0.05 0.290476
-     size 0.1628 0.209524
+     size 0.1518 0.209524
      color 0 0 0 0
      hexactpos 0
      vexactpos 0
@@ -146,7 +146,7 @@ PanelWidgetClass TFL_QueueRoot {
      {
       ImageWidgetClass tfl_queue_digits_0 {
        position 0 0
-       size 0.310811 1
+       size 0.318841 1
        color 0.92549 0.929412 0.913725 1
        image0 "TFL/GUI/textures/digits/d0.paa"
        mode blend
@@ -159,8 +159,8 @@ PanelWidgetClass TFL_QueueRoot {
        ignorepointer 1
       }
       ImageWidgetClass tfl_queue_digits_1 {
-       position 0.344595 0
-       size 0.310811 1
+       position 0.34058 0
+       size 0.318841 1
        color 0.92549 0.929412 0.913725 1
        image0 "TFL/GUI/textures/digits/d0.paa"
        mode blend
@@ -173,8 +173,8 @@ PanelWidgetClass TFL_QueueRoot {
        ignorepointer 1
       }
       ImageWidgetClass tfl_queue_digits_2 {
-       position 0.689189 0
-       size 0.310811 1
+       position 0.681159 0
+       size 0.318841 1
        color 0.92549 0.929412 0.913725 1
        image0 "TFL/GUI/textures/digits/d0.paa"
        mode blend
@@ -194,8 +194,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.2378 0.4
-     size 0.25 0.080952
+     position 0.2268 0.397619
+     size 0.25 0.085714
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -319,8 +319,8 @@ PanelWidgetClass TFL_QueueRoot {
        "text color" 0.839216 0.843137 0.823529 1
        "text valign" center
        "text halign" center
-       position 0.026667 0
-       size 0.946667 0.942857
+       position 0.066667 0.242857
+       size 0.866667 0.457143
        color 1 1 1 1
        hexactpos 0
        vexactpos 0
@@ -350,8 +350,8 @@ PanelWidgetClass TFL_QueueRoot {
    "text color" 0.360784 0.388235 0.376471 1
    "text valign" center
    "text halign" left
-   position 0.15625 0.907407
-   size 0.46875 0.022222
+   position 0.15625 0.909259
+   size 0.46875 0.018519
    color 1 1 1 1
    hexactpos 0
    vexactpos 0

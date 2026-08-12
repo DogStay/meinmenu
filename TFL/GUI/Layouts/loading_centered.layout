@@ -194,8 +194,8 @@ PanelWidgetClass TFL_LoadingCenteredRoot {
    "text color" 0.360784 0.388235 0.376471 1
    "text valign" center
    "text halign" center
-   position 0.239583 0.833333
-   size 0.520833 0.022222
+   position 0.239583 0.835185
+   size 0.520833 0.018519
    color 1 1 1 1
    hexactpos 0
    vexactpos 0

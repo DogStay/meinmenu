@@ -71,8 +71,8 @@ PanelWidgetClass TFL_HintCardRoot {
    "text color" 0.486275 0.521569 0.388235 1
    "text valign" center
    "text halign" left
-   position 0.38 0.117647
-   size 0.58 0.076471
+   position 0.38 0.126471
+   size 0.58 0.058824
    color 1 1 1 1
    hexactpos 0
    vexactpos 0
@@ -87,8 +87,8 @@ PanelWidgetClass TFL_HintCardRoot {
    "text color" 0.92549 0.929412 0.913725 1
    "text valign" center
    "text halign" left
-   position 0.38 0.235294
-   size 0.58 0.117647
+   position 0.38 0.244118
+   size 0.58 0.1
    color 1 1 1 1
    hexactpos 0
    vexactpos 0
@@ -119,8 +119,8 @@ PanelWidgetClass TFL_HintCardRoot {
    "text color" 0.588235 0.607843 0.588235 1
    "text valign" center
    "text halign" left
-   position 0.38 0.811765
-   size 0.29 0.070588
+   position 0.38 0.817647
+   size 0.29 0.058824
    color 1 1 1 1
    hexactpos 0
    vexactpos 0
@@ -186,8 +186,8 @@ PanelWidgetClass TFL_HintCardRoot {
      "text color" 0.839216 0.843137 0.823529 1
      "text valign" center
      "text halign" center
-     position 0.142857 0
-     size 0.714286 0.909091
+     position 0.357143 0.090909
+     size 0.285714 0.727273
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -255,8 +255,8 @@ PanelWidgetClass TFL_HintCardRoot {
      "text color" 0.839216 0.843137 0.823529 1
      "text valign" center
      "text halign" center
-     position 0.142857 0
-     size 0.714286 0.909091
+     position 0.357143 0.090909
+     size 0.285714 0.727273
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
