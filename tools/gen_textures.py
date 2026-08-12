@@ -165,6 +165,26 @@ def vignette(size=512, strength=0.62):
     return img
 
 
+def digit(char, w=64, h=128):
+    """Табличная цифра для крупных счётчиков (таймер 92px, очередь 88px).
+
+    В игре подтверждены только два шрифтовых ресурса, оба мелкие, поэтому
+    крупные цифры из хендоффа набираются текстурами: один глиф — один .paa,
+    ширина одинаковая у всех символов (tabular-nums, как в спеке)."""
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+
+    size = int(h * 0.82)
+    font = ImageFont.truetype(FONT_CONDENSED, size)
+    box = font.getbbox(char)
+
+    d.text(((w - (box[2] - box[0])) / 2 - box[0],
+            (h - (box[3] - box[1])) / 2 - box[1]),
+           char, font=font, fill=(255, 255, 255, 255))
+
+    return img
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
 
@@ -182,6 +202,12 @@ def main():
               gap_a=10, gap_b=0, subtitle=False), "logo_small.paa")
 
     save(vignette(), "vignette.paa")
+
+    os.makedirs(os.path.join(OUT, "digits"), exist_ok=True)
+
+    for ch, name in [(str(i), "d%d" % i) for i in range(10)] + \
+                    [(":", "dcolon"), ("/", "dslash")]:
+        save(digit(ch), os.path.join("digits", name + ".paa"))
 
     save(icon_chat(64), "icon_discord.paa")
     save(icon_globe(64), "icon_website.paa")

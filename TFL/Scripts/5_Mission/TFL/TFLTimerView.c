@@ -16,7 +16,7 @@ class TFL_TimerView
     protected Widget            m_Panel;
     protected Widget            m_Mark;
     protected TextWidget        m_Title;
-    protected TextWidget        m_Value;
+    protected ref TFL_Digits    m_Value;   //!< 92px — текстурные глифы
     protected TextWidget        m_Subtitle;
     protected TextWidget        m_Character;
     protected TextWidget        m_Hint;
@@ -49,7 +49,7 @@ class TFL_TimerView
             m_Panel = panel.FindAnyWidget("border");
         m_Mark      = m_Root.FindAnyWidget("tfl_timer_mark");
         m_Title     = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_title"));
-        m_Value     = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_value"));
+        m_Value     = new TFL_Digits(m_Root, "tfl_timer_digits", 4);
         m_Subtitle  = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_subtitle"));
         m_Character = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_character"));
         m_Hint      = TextWidget.Cast(m_Root.FindAnyWidget("tfl_timer_hint"));
@@ -120,7 +120,7 @@ class TFL_TimerView
         m_Left = Math.Max(seconds, 0);
 
         if (m_Value)
-            m_Value.SetText(FormatTime(m_Left));
+            m_Value.SetValue(FormatTime(m_Left));
 
         if (m_Fill && m_Total > 0)
             m_Fill.SetSize(m_TrackW * Math.Clamp(m_Left / m_Total, 0, 1), m_TrackH);
@@ -220,13 +220,15 @@ class TFL_TimerView
             m_Character.Show(!respawn);
     }
 
+    //! "MMSS" — четыре разряда, двоеточие рисует отдельный слот.
     protected string FormatTime(float seconds)
     {
         int total = Math.Round(seconds);
-        int mm    = total / 60;
+        int mm    = Math.Min(total / 60, 99);
         int ss    = total % 60;
 
-        return string.Format("%1:%2", Pad(mm), Pad(ss));
+        // без двоеточия: разделитель — отдельный слот в layout
+        return Pad(mm) + Pad(ss);
     }
 
     protected string Pad(int value)

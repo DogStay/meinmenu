@@ -37,6 +37,20 @@ PanelWidgetClass TFL_QueueRoot {
    vexactsize 0
    ignorepointer 1
   }
+  ImageWidgetClass tfl_queue_vignette {
+   position 0 0
+   size 1 1
+   color 1 1 1 1
+   image0 "TFL/GUI/textures/vignette.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
   PanelWidgetClass tfl_queue_panel {
    position 0.15625 0.305556
    size 0.416667 0.388889
@@ -94,8 +108,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.92549 0.929412 0.913725 1
      "text valign" center
      "text halign" left
-     position 0.05 0.095238
-     size 0.9 0.071429
+     position 0.05 0.1
+     size 0.9 0.066667
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -110,8 +124,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.05 0.214286
-     size 0.9 0.061905
+     position 0.05 0.190476
+     size 0.9 0.052381
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -120,21 +134,59 @@ PanelWidgetClass TFL_QueueRoot {
      ignorepointer 1
      "exact text" 1
     }
-    TextWidgetClass tfl_queue_position {
-     font "gui/fonts/etelkatextpro22"
-     text "--"
-     "text color" 0.92549 0.929412 0.913725 1
-     "text valign" center
-     "text halign" left
-     position 0.05 0.333333
-     size 0.3 0.238095
-     color 1 1 1 1
+    PanelWidgetClass tfl_queue_digits {
+     position 0.05 0.290476
+     size 0.1628 0.209524
+     color 0 0 0 0
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
      ignorepointer 1
-     "exact text" 1
+     {
+      ImageWidgetClass tfl_queue_digits_0 {
+       position 0 0
+       size 0.310811 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_queue_digits_1 {
+       position 0.344595 0
+       size 0.310811 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_queue_digits_2 {
+       position 0.689189 0
+       size 0.310811 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
     }
     TextWidgetClass tfl_queue_total {
      font "gui/fonts/etelkatextpro22"
@@ -142,8 +194,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.3 0.47619
-     size 0.25 0.095238
+     position 0.2378 0.4
+     size 0.25 0.080952
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -158,8 +210,8 @@ PanelWidgetClass TFL_QueueRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" left
-     position 0.05 0.642857
-     size 0.35 0.061905
+     position 0.05 0.585714
+     size 0.375 0.052381
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -169,7 +221,7 @@ PanelWidgetClass TFL_QueueRoot {
      "exact text" 1
     }
     ImageWidgetClass tfl_queue_dot_0 {
-     position 0.4 0.671429
+     position 0.3625 0.602381
      size 0.01 0.019048
      color 0.486275 0.521569 0.388235 1
      image0 "TFL/GUI/textures/ui_fill.paa"
@@ -183,7 +235,7 @@ PanelWidgetClass TFL_QueueRoot {
      ignorepointer 1
     }
     ImageWidgetClass tfl_queue_dot_1 {
-     position 0.425 0.671429
+     position 0.3875 0.602381
      size 0.01 0.019048
      color 0.486275 0.521569 0.388235 1
      image0 "TFL/GUI/textures/ui_fill.paa"
@@ -197,7 +249,7 @@ PanelWidgetClass TFL_QueueRoot {
      ignorepointer 1
     }
     ImageWidgetClass tfl_queue_dot_2 {
-     position 0.45 0.671429
+     position 0.4125 0.602381
      size 0.01 0.019048
      color 0.486275 0.521569 0.388235 1
      image0 "TFL/GUI/textures/ui_fill.paa"
@@ -211,7 +263,7 @@ PanelWidgetClass TFL_QueueRoot {
      ignorepointer 1
     }
     ButtonWidgetClass tfl_queue_cancel {
-     position 0.05 0.738095
+     position 0.05 0.704762
      size 0.375 0.166667
      color 0 0 0 0
      hexactpos 0

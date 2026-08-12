@@ -80,8 +80,8 @@ PanelWidgetClass TFL_TimerRoot {
      "text color" 0.92549 0.929412 0.913725 1
      "text valign" center
      "text halign" center
-     position 0.066667 0.117647
-     size 0.866667 0.088235
+     position 0.066667 0.1
+     size 0.866667 0.082353
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -90,21 +90,87 @@ PanelWidgetClass TFL_TimerRoot {
      ignorepointer 1
      "exact text" 1
     }
-    TextWidgetClass tfl_timer_value {
-     font "gui/fonts/etelkatextpro22"
-     text "00:00"
-     "text color" 0.92549 0.929412 0.913725 1
-     "text valign" center
-     "text halign" center
-     position 0.066667 0.323529
-     size 0.866667 0.294118
-     color 1 1 1 1
+    PanelWidgetClass tfl_timer_digits {
+     position 0.326733 0.241176
+     size 0.346533 0.270588
+     color 0 0 0 0
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
      ignorepointer 1
-     "exact text" 1
+     {
+      ImageWidgetClass tfl_timer_digits_0 {
+       position 0 0
+       size 0.20354 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_timer_digits_1 {
+       position 0.225664 0
+       size 0.20354 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_timer_digits_sep {
+       position 0.451327 0
+       size 0.097345 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/dcolon.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_timer_digits_2 {
+       position 0.570796 0
+       size 0.20354 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfl_timer_digits_3 {
+       position 0.79646 0
+       size 0.20354 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFL/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
     }
     TextWidgetClass tfl_timer_subtitle {
      font "gui/fonts/metron-bold14"
@@ -112,8 +178,24 @@ PanelWidgetClass TFL_TimerRoot {
      "text color" 0.588235 0.607843 0.588235 1
      "text valign" center
      "text halign" center
-     position 0.066667 0.647059
-     size 0.866667 0.076471
+     position 0.05 0.558824
+     size 0.9 0.070588
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfl_timer_character {
+     font "gui/fonts/metron-bold14"
+     text ""
+     "text color" 0.360784 0.388235 0.376471 1
+     "text valign" center
+     "text halign" center
+     position 0.05 0.641176
+     size 0.9 0.064706
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -123,7 +205,7 @@ PanelWidgetClass TFL_TimerRoot {
      "exact text" 1
     }
     PanelWidgetClass tfl_timer_track {
-     position 0.066667 0.779412
+     position 0.2 0.770588
      size 0.6 0.035294
      color 0 0 0 0
      hexactpos 0
@@ -163,7 +245,7 @@ PanelWidgetClass TFL_TimerRoot {
      }
     }
     ButtonWidgetClass tfl_timer_respawn {
-     position 0.066667 0.744118
+     position 0.25 0.682353
      size 0.5 0.205882
      color 0 0 0 0
      hexactpos 0
@@ -237,8 +319,8 @@ PanelWidgetClass TFL_TimerRoot {
      "text color" 0.360784 0.388235 0.376471 1
      "text valign" center
      "text halign" center
-     position 0.6 0.794118
-     size 0.333333 0.070588
+     position 0.05 0.911765
+     size 0.9 0.058824
      color 1 1 1 1
      hexactpos 0
      vexactpos 0
@@ -248,22 +330,6 @@ PanelWidgetClass TFL_TimerRoot {
      "exact text" 1
     }
    }
-  }
-  TextWidgetClass tfl_timer_character {
-   font "gui/fonts/metron-bold14"
-   text ""
-   "text color" 0.360784 0.388235 0.376471 1
-   "text valign" center
-   "text halign" center
-   position 0.34375 0.675926
-   size 0.3125 0.024074
-   color 1 1 1 1
-   hexactpos 0
-   vexactpos 0
-   hexactsize 0
-   vexactsize 0
-   ignorepointer 1
-   "exact text" 1
   }
  }
 }

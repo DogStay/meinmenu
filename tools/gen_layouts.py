@@ -213,6 +213,55 @@ def button(doc, depth, name, ctx, box, text, *, style="secondary",
            children=kids)
 
 
+def digit_row(doc, depth, ctx, name, x, y, h, pattern, center=False):
+    """Крупное табличное число из текстур-глифов.
+
+    Игровые шрифты, существование которых подтверждено, дают 22px — цифры
+    хендоффа (таймер 92, очередь 88) ими не набрать. Поэтому каждый глиф —
+    отдельный ImageWidget, а скрипт подставляет им текстуры. Ширина слота
+    одинаковая у всех символов: это и есть tabular-nums из спеки.
+
+    pattern: строка вида "dd:dd" — d = слот цифры, : = разделитель.
+    center: x задаёт центр строки, иначе — её левый край."""
+    dw = h * 0.46
+    sw = h * 0.22
+    gap = h * 0.05
+
+    total = 0
+    for ch in pattern:
+        total += (sw if ch != "d" else dw) + gap
+    total -= gap
+
+    if center:
+        x -= total / 2
+
+    row = Ctx(x, y, total, h)
+
+    def kids(d):
+        cx = x
+        index = 0
+
+        for ch in pattern:
+            w = sw if ch != "d" else dw
+
+            if ch == "d":
+                slot = "%s_%d" % (name, index)
+                glyph = "d0"
+                index += 1
+            else:
+                slot = "%s_sep" % name
+                glyph = "dcolon"
+
+            widget(doc, d, "ImageWidgetClass", slot, row, (cx, y, w, h),
+                   color=rgba(C_TEXT),
+                   image="TFL/GUI/textures/digits/%s.paa" % glyph)
+            cx += w + gap
+
+    container(doc, depth, name, ctx, (x, y, total, h), kids, ignore=True)
+
+    return total
+
+
 def root(doc, children, name="Root"):
     ctx = Ctx(0, 0, W, H)
     widget(doc, 0, "PanelWidgetClass", name, ctx, (0, 0, W, H), color="0 0 0 0",
@@ -482,47 +531,61 @@ def loading_centered():
 def server_queue():
     doc = Doc("// 05 SERVER QUEUE (id 6b). Сгенерирован tools/gen_layouts.py")
 
+    PX, PY, PW, PH = 300, 330, 800, 420
+    PAD = 40
+
     def body(d, ctx):
         widget(doc, d, "ImageWidgetClass", "tfl_queue_bg", ctx, (0, 0, W, H),
                color="1 1 1 1",
                image="TFL/GUI/textures/loading_background_03.paa")
 
-        # blur 6px недоступен без PAA — компенсируется затемнением 65%
+        # blur 6px движком UI не даётся — компенсируется затемнением 65%
         fill(doc, d, "tfl_queue_dim", ctx, (0, 0, W, H), C_BG, 0.65)
+        widget(doc, d, "ImageWidgetClass", "tfl_queue_vignette", ctx,
+               (0, 0, W, H), color="1 1 1 1",
+               image="TFL/GUI/textures/vignette.paa")
 
-        panel = Ctx(300, 330, 800, 420)
+        panel = Ctx(PX, PY, PW, PH)
+        left = PX + PAD
 
         def kids(dd):
-            fill(doc, dd, "border", panel, (300, 330, 800, 420), C_BORDER)
-            fill(doc, dd, "fill", panel, (301, 331, 798, 418), C_PANEL)
-            fill(doc, dd, "mark", panel, (300, 330, 800, 4), C_OLIVE)
+            fill(doc, dd, "border", panel, (PX, PY, PW, PH), C_BORDER)
+            fill(doc, dd, "fill", panel, (PX + 1, PY + 1, PW - 2, PH - 2), C_PANEL)
+            fill(doc, dd, "mark", panel, (PX, PY, PW, 4), C_OLIVE)
 
-            label(doc, dd, "tfl_queue_title", panel, (340, 370, 720, 30),
+            label(doc, dd, "tfl_queue_title", panel, (left, PY + 42, PW - PAD * 2, 28),
                   "ПОДКЛЮЧЕНИЕ К СЕРВЕРУ", C_TEXT, halign="left")
-            label(doc, dd, "tfl_queue_label", panel, (340, 420, 720, 26),
+            label(doc, dd, "tfl_queue_label", panel, (left, PY + 80, PW - PAD * 2, 22),
                   "Ваша позиция в очереди", C_TEXT_2ND, font=FONT_MICRO,
                   halign="left")
-            label(doc, dd, "tfl_queue_position", panel, (340, 470, 240, 100),
-                  "--", C_TEXT, halign="left")
-            label(doc, dd, "tfl_queue_total", panel, (540, 530, 200, 40), "",
-                  C_TEXT_2ND, halign="left")
-            label(doc, dd, "tfl_queue_waiting", panel, (340, 600, 280, 26),
+
+            # 88px tabular — текстурные глифы, до трёх разрядов
+            row = digit_row(doc, dd, panel, "tfl_queue_digits",
+                            left, PY + 122, 88, "ddd")
+
+            # «/ NN» — 36px вторичным, по нижней линии числа
+            label(doc, dd, "tfl_queue_total", panel,
+                  (left + row + 20, PY + 168, 200, 34), "", C_TEXT_2ND,
+                  halign="left")
+
+            label(doc, dd, "tfl_queue_waiting", panel, (left, PY + 246, 300, 22),
                   "Ожидание подключения", C_TEXT_2ND, font=FONT_MICRO,
                   halign="left")
 
+            # индикатор: три квадрата 8×8, поочерёдная пульсация 1.2 s
             for i in range(3):
                 fill(doc, dd, "tfl_queue_dot_%d" % i, panel,
-                     (620 + i * 20, 612, 8, 8), C_OLIVE)
+                     (left + 250 + i * 20, PY + 253, 8, 8), C_OLIVE)
 
-            button(doc, dd, "tfl_queue_cancel", panel, (340, 640, 300, 70),
-                   "ОТМЕНА", style="danger")
+            button(doc, dd, "tfl_queue_cancel", panel,
+                   (left, PY + 296, 300, 70), "ОТМЕНА", style="danger")
 
-        container(doc, d, "tfl_queue_panel", ctx, (300, 330, 800, 420), kids)
+        container(doc, d, "tfl_queue_panel", ctx, (PX, PY, PW, PH), kids)
 
         container(doc, d, "tfl_queue_hint_holder", ctx, (1232, 340, 600, 400),
                   lambda dd: None)
 
-        label(doc, d, "tfl_queue_caption", ctx, (300, 980, 900, 24),
+        label(doc, d, "tfl_queue_caption", ctx, (PX, 980, 900, 24),
               "СРЕДНЕЕ ВРЕМЯ ОЖИДАНИЯ ~ 4 МИН · НЕ ЗАКРЫВАЙТЕ КЛИЕНТ",
               C_TEXT_3RD, font=FONT_MICRO, halign="left")
 
@@ -537,43 +600,58 @@ def server_queue():
 def timer_panel():
     doc = Doc("// 06 LOGIN / 07 RESPAWN TIMER (id 6c). Сгенерирован tools/gen_layouts.py")
 
+    # Панель 600×340; вертикальный ритм пересчитан под реальный кегль текста
+    # (22px) и крупные цифры-текстуры — иначе середина панели пустует.
+    PX, PY, PW, PH = 660, 370, 600, 340
+
     def body(d, ctx):
         fill(doc, d, "tfl_timer_dim", ctx, (0, 0, W, H), C_BG, 0.80)
 
-        panel = Ctx(660, 370, 600, 340)
+        panel = Ctx(PX, PY, PW, PH)
 
         def kids(dd):
-            fill(doc, dd, "border", panel, (660, 370, 600, 340), C_BORDER)
-            fill(doc, dd, "fill", panel, (661, 371, 598, 338), C_PANEL)
-            fill(doc, dd, "tfl_timer_mark", panel, (660, 370, 600, 4), C_OLIVE)
+            fill(doc, dd, "border", panel, (PX, PY, PW, PH), C_BORDER)
+            fill(doc, dd, "fill", panel, (PX + 1, PY + 1, PW - 2, PH - 2), C_PANEL)
+            fill(doc, dd, "tfl_timer_mark", panel, (PX, PY, PW, 4), C_OLIVE)
 
-            label(doc, dd, "tfl_timer_title", panel, (700, 410, 520, 30),
+            label(doc, dd, "tfl_timer_title", panel, (PX + 40, PY + 34, PW - 80, 28),
                   "ВХОД В МИР", C_TEXT)
-            label(doc, dd, "tfl_timer_value", panel, (700, 480, 520, 100),
-                  "00:00", C_TEXT)
-            label(doc, dd, "tfl_timer_subtitle", panel, (700, 590, 520, 26),
+
+            # 92px tabular — текстурные глифы, по центру панели
+            digit_row(doc, dd, panel, "tfl_timer_digits",
+                      PX + PW / 2, PY + 82, 92, "dd:dd", center=True)
+
+            label(doc, dd, "tfl_timer_subtitle", panel,
+                  (PX + 30, PY + 190, PW - 60, 24),
                   "Не отключайте игру во время подключения", C_TEXT_2ND,
                   font=FONT_MICRO)
 
-            track = Ctx(700, 635, 360, 12)
+            label(doc, dd, "tfl_timer_character", panel,
+                  (PX + 30, PY + 218, PW - 60, 22), "", C_TEXT_3RD,
+                  font=FONT_MICRO)
+
+            # login: полоса обратного отсчёта 360×12
+            track = Ctx(PX + (PW - 360) / 2, PY + 262, 360, 12)
 
             def track_kids(ddd):
-                fill(doc, ddd, "bg", track, (700, 635, 360, 12), C_PANEL_DEEP)
-                fill(doc, ddd, "tfl_timer_fill", track, (700, 635, 360, 12),
-                     C_OLIVE_DARK)
+                fill(doc, ddd, "bg", track, (PX + (PW - 360) / 2, PY + 262, 360, 12),
+                     C_PANEL_DEEP)
+                fill(doc, ddd, "tfl_timer_fill", track,
+                     (PX + (PW - 360) / 2, PY + 262, 360, 12), C_OLIVE_DARK)
 
-            container(doc, dd, "tfl_timer_track", panel, (700, 635, 360, 12),
-                      track_kids, ignore=True)
+            container(doc, dd, "tfl_timer_track", panel,
+                      (PX + (PW - 360) / 2, PY + 262, 360, 12), track_kids,
+                      ignore=True)
 
-            button(doc, dd, "tfl_timer_respawn", panel, (700, 623, 300, 70),
-                   "ВОЗРОДИТЬСЯ", style="disabled")
-            label(doc, dd, "tfl_timer_hint", panel, (1020, 640, 200, 24),
-                  "КНОПКА АКТИВНА ПРИ 00:00", C_TEXT_3RD, font=FONT_MICRO)
+            # respawn: кнопка 300×70 по центру, подпись под ней
+            button(doc, dd, "tfl_timer_respawn", panel,
+                   (PX + (PW - 300) / 2, PY + 232, 300, 70), "ВОЗРОДИТЬСЯ",
+                   style="disabled")
+            label(doc, dd, "tfl_timer_hint", panel,
+                  (PX + 30, PY + 310, PW - 60, 20), "КНОПКА АКТИВНА ПРИ 00:00",
+                  C_TEXT_3RD, font=FONT_MICRO)
 
-        container(doc, d, "tfl_timer_panel", ctx, (660, 370, 600, 340), kids)
-
-        label(doc, d, "tfl_timer_character", ctx, (660, 730, 600, 26), "",
-              C_TEXT_3RD, font=FONT_MICRO)
+        container(doc, d, "tfl_timer_panel", ctx, (PX, PY, PW, PH), kids)
 
     root(doc, body, "TFL_TimerRoot")
     doc.write("timer_panel.layout")

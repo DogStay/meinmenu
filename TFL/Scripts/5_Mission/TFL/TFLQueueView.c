@@ -11,7 +11,7 @@ class TFL_QueueView
     protected ref TFL_HintCard  m_Hint;
     protected ref TFL_MenuButton m_Cancel;
 
-    protected TextWidget        m_Position;
+    protected ref TFL_Digits    m_Position;   //!< 88px — текстурные глифы
     protected TextWidget        m_Total;
     protected ref array<Widget> m_Dots;
 
@@ -27,7 +27,7 @@ class TFL_QueueView
             return;
         }
 
-        m_Position = TextWidget.Cast(m_Root.FindAnyWidget("tfl_queue_position"));
+        m_Position = new TFL_Digits(m_Root, "tfl_queue_digits", 3);
         m_Total    = TextWidget.Cast(m_Root.FindAnyWidget("tfl_queue_total"));
 
         ButtonWidget cancel = ButtonWidget.Cast(m_Root.FindAnyWidget("tfl_queue_cancel"));
@@ -82,7 +82,7 @@ class TFL_QueueView
     void SetPosition(int position, int total)
     {
         if (m_Position)
-            m_Position.SetText(position.ToString());
+            m_Position.SetValue(Math.Clamp(position, 0, 999).ToString());
 
         if (m_Total)
         {
