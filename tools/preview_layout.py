@@ -5,7 +5,7 @@
 относительные координаты, цвета RGBA, ui_fill-заливки и .paa-текстуры.
 Шрифт подставной, поэтому кегль и метрики текста — приблизительные.
 
-    python3 tools/preview_layout.py TFL/GUI/Layouts/main_menu.layout out.png
+    python3 tools/preview_layout.py TFM_MENUGAME_UI/GUI/Layouts/main_menu.layout out.png
 """
 
 import os

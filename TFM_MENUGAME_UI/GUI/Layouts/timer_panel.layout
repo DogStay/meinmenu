@@ -1,0 +1,335 @@
+// 06 LOGIN / 07 RESPAWN TIMER (id 6c). Сгенерирован tools/gen_layouts.py
+
+PanelWidgetClass TFM_TimerRoot {
+ position 0 0
+ size 1 1
+ color 0 0 0 0
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass tfm_timer_dim {
+   position 0 0
+   size 1 1
+   color 0.035294 0.043137 0.047059 0.8
+   image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+   mode blend
+   "src alpha" 1
+   "stretch mode" 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   ignorepointer 1
+  }
+  PanelWidgetClass tfm_timer_panel {
+   position 0.34375 0.342593
+   size 0.3125 0.314815
+   color 0 0 0 0
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ImageWidgetClass border {
+     position 0 0
+     size 1 1
+     color 0.137255 0.156863 0.164706 1
+     image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass fill {
+     position 0.001667 0.002941
+     size 0.996667 0.994118
+     color 0.078431 0.094118 0.098039 1
+     image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    ImageWidgetClass tfm_timer_mark {
+     position 0 0
+     size 1 0.011765
+     color 0.486275 0.521569 0.388235 1
+     image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+     mode blend
+     "src alpha" 1
+     "stretch mode" 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+    }
+    TextWidgetClass tfm_timer_title {
+     font "gui/fonts/etelkatextpro22"
+     text "ВХОД В МИР"
+     "text color" 0.92549 0.929412 0.913725 1
+     "text valign" center
+     "text halign" center
+     position 0.066667 0.097059
+     size 0.866667 0.088235
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    PanelWidgetClass tfm_timer_digits {
+     position 0.340533 0.241176
+     size 0.318933 0.270588
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     {
+      ImageWidgetClass tfm_timer_digits_0 {
+       position 0 0
+       size 0.211538 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfm_timer_digits_1 {
+       position 0.225962 0
+       size 0.211538 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfm_timer_digits_sep {
+       position 0.451923 0
+       size 0.096154 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/digits/dcolon.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfm_timer_digits_2 {
+       position 0.5625 0
+       size 0.211538 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfm_timer_digits_3 {
+       position 0.788462 0
+       size 0.211538 1
+       color 0.92549 0.929412 0.913725 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/digits/d0.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
+    }
+    TextWidgetClass tfm_timer_subtitle {
+     font "gui/fonts/metron-bold14"
+     text "Не отключайте игру во время подключения"
+     "text color" 0.588235 0.607843 0.588235 1
+     "text valign" center
+     "text halign" center
+     position 0.05 0.558824
+     size 0.9 0.070588
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    TextWidgetClass tfm_timer_character {
+     font "gui/fonts/metron-bold14"
+     text ""
+     "text color" 0.360784 0.388235 0.376471 1
+     "text valign" center
+     "text halign" center
+     position 0.05 0.644118
+     size 0.9 0.058824
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+    PanelWidgetClass tfm_timer_track {
+     position 0.2 0.770588
+     size 0.6 0.035294
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     {
+      ImageWidgetClass bg {
+       position 0 0
+       size 1 1
+       color 0.062745 0.078431 0.082353 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass tfm_timer_fill {
+       position 0 0
+       size 1 1
+       color 0.411765 0.447059 0.329412 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+     }
+    }
+    ButtonWidgetClass tfm_timer_respawn {
+     position 0.25 0.682353
+     size 0.5 0.205882
+     color 0 0 0 0
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass border {
+       position 0 0
+       size 1 1
+       color 0.137255 0.156863 0.164706 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass fill {
+       position 0.003333 0.014286
+       size 0.993333 0.971429
+       color 0.070588 0.082353 0.086275 1
+       image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      ImageWidgetClass mark {
+       position 0 0.942857
+       size 1 0.057143
+       color 0.486275 0.521569 0.388235 0
+       image0 "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
+       mode blend
+       "src alpha" 1
+       "stretch mode" 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+      }
+      TextWidgetClass label {
+       font "gui/fonts/etelkatextpro22"
+       text "ВОЗРОДИТЬСЯ"
+       "text color" 0.352941 0.368627 0.356863 1
+       "text valign" center
+       "text halign" center
+       position 0.066667 0.242857
+       size 0.866667 0.457143
+       color 1 1 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       ignorepointer 1
+       "exact text" 1
+      }
+     }
+    }
+    TextWidgetClass tfm_timer_hint {
+     font "gui/fonts/metron-bold14"
+     text "КНОПКА АКТИВНА ПРИ 00:00"
+     "text color" 0.360784 0.388235 0.376471 1
+     "text valign" center
+     "text halign" center
+     position 0.05 0.911765
+     size 0.9 0.058824
+     color 1 1 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     ignorepointer 1
+     "exact text" 1
+    }
+   }
+  }
+ }
+}

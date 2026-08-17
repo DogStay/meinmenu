@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-OUT = os.path.join(ROOT, "TFL", "GUI", "textures")
+OUT = os.path.join(ROOT, "TFM_MENUGAME_UI", "GUI", "textures")
 
 FONTS = "/mnt/skills/examples/canvas-design/canvas-fonts"
 FONT_CONDENSED = os.path.join(FONTS, "BigShoulders-Bold.ttf")

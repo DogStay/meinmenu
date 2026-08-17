@@ -23,9 +23,9 @@ W, H = 1920.0, 1080.0
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-OUT = os.path.join(ROOT, "TFL", "GUI", "Layouts")
+OUT = os.path.join(ROOT, "TFM_MENUGAME_UI", "GUI", "Layouts")
 
-FILL = "TFL/GUI/textures/ui_fill.paa"
+FILL = "TFM_MENUGAME_UI/GUI/textures/ui_fill.paa"
 
 # Единственные подтверждённые шрифтовые ресурсы (из рабочего мода).
 FONT_BODY = "gui/fonts/etelkatextpro22"
@@ -160,24 +160,24 @@ def fill(doc, depth, name, ctx, box, colour, alpha=1.0):
 # центрируется в отведённом месте. Если растянуть его на всю строку, буквы
 # упираются в края и выглядят несоразмерно крупными.
 TYPE_SIZE = {
-    "tfl_tooltip_title": 24, "tfl_tooltip_text": 20,
+    "tfm_tooltip_title": 24, "tfm_tooltip_text": 20,
 
-    "tfl_hint_category": 20, "tfl_hint_title": 34,
-    "tfl_hint_desc": 26,     "tfl_hint_counter": 20,
+    "tfm_hint_category": 20, "tfm_hint_title": 34,
+    "tfm_hint_desc": 26,     "tfm_hint_counter": 20,
 
-    "tfl_load_label": 22,    "tfl_progress_percent": 40,
-    "tfl_load_caption": 20,  "tfl_load_warning": 20,
+    "tfm_load_label": 22,    "tfm_progress_percent": 40,
+    "tfm_load_caption": 20,  "tfm_load_warning": 20,
 
-    "tfl_queue_title": 30,   "tfl_queue_label": 26,
-    "tfl_queue_total": 36,   "tfl_queue_waiting": 22,
-    "tfl_queue_caption": 20,
+    "tfm_queue_title": 30,   "tfm_queue_label": 26,
+    "tfm_queue_total": 36,   "tfm_queue_waiting": 22,
+    "tfm_queue_caption": 20,
 
-    "tfl_timer_title": 30,   "tfl_timer_subtitle": 24,
-    "tfl_timer_character": 20, "tfl_timer_hint": 20,
+    "tfm_timer_title": 30,   "tfm_timer_subtitle": 24,
+    "tfm_timer_character": 20, "tfm_timer_hint": 20,
 
-    "tfl_dialog_title": 30,  "tfl_dialog_text": 26, "tfl_dialog_code": 20,
+    "tfm_dialog_title": 30,  "tfm_dialog_text": 26, "tfm_dialog_code": 20,
 
-    "tfl_section_desc": 22,
+    "tfm_section_desc": 22,
 
     "label": 32,             # подпись кнопки
 }
@@ -188,7 +188,7 @@ TYPE_DEFAULT = 24
 def type_size(name):
     if name in TYPE_SIZE:
         return TYPE_SIZE[name]
-    if name.startswith("tfl_status_") or name.startswith("hdr_"):
+    if name.startswith("tfm_status_") or name.startswith("hdr_"):
         return 20
     if name in ("name", "map", "players", "mode", "ping"):
         return 24
@@ -318,7 +318,7 @@ def digit_row(doc, depth, ctx, name, x, y, h, pattern, center=False):
 
             widget(doc, d, "ImageWidgetClass", slot, row, (cx, y, w, h),
                    color=rgba(C_TEXT),
-                   image="TFL/GUI/textures/digits/%s.paa" % glyph)
+                   image="TFM_MENUGAME_UI/GUI/textures/digits/%s.paa" % glyph)
             cx += w + gap
 
     container(doc, depth, name, ctx, (x, y, total, h), kids, ignore=True)
@@ -355,28 +355,28 @@ def main_menu():
     doc = Doc("// 01 MAIN MENU (id 5a) + 02 HOVER (id 5b). Сгенерирован tools/gen_layouts.py")
 
     def body(d, ctx):
-        widget(doc, d, "ImageWidgetClass", "tfl_bg", ctx, (0, 0, W, H),
-               color="1 1 1 1", image="TFL/GUI/textures/mainmenu_background.paa")
+        widget(doc, d, "ImageWidgetClass", "tfm_bg", ctx, (0, 0, W, H),
+               color="1 1 1 1", image="TFM_MENUGAME_UI/GUI/textures/mainmenu_background.paa")
 
         # радиальная виньетка (хендофф, раздел 01): поднимает контраст
         # логотипа и ленты над светлыми участками арта
-        widget(doc, d, "ImageWidgetClass", "tfl_vignette", ctx, (0, 0, W, H),
-               color="1 1 1 1", image="TFL/GUI/textures/vignette.paa")
+        widget(doc, d, "ImageWidgetClass", "tfm_vignette", ctx, (0, 0, W, H),
+               color="1 1 1 1", image="TFM_MENUGAME_UI/GUI/textures/vignette.paa")
 
         # скрим сверху: логотип ложится на закатное небо, без него
         # светлый участок арта съедает контраст надписи
-        gradient(doc, d, ctx, "tfl_scrim", 0, 0, W, 460, 5, C_BG,
+        gradient(doc, d, ctx, "tfm_scrim", 0, 0, W, 460, 5, C_BG,
                  bottom=0.45, invert=True)
 
-        gradient(doc, d, ctx, "tfl_grad", 0, 660, W, 420, 7, C_BG)
+        gradient(doc, d, ctx, "tfm_grad", 0, 660, W, 420, 7, C_BG)
 
         # доп. затемнение 8% при hover — включает скрипт
-        fill(doc, d, "tfl_dim", ctx, (0, 0, W, H), C_BG, 0.0)
+        fill(doc, d, "tfm_dim", ctx, (0, 0, W, H), C_BG, 0.0)
 
         # логотип — текстура (ассет-лист 8d: «3 логотипа»)
-        widget(doc, d, "ImageWidgetClass", "tfl_logo_title", ctx,
+        widget(doc, d, "ImageWidgetClass", "tfm_logo_title", ctx,
                (610, 172, 700, 175), color="1 1 1 1",
-               image="TFL/GUI/textures/logo_main.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/logo_main.paa")
 
         # tooltip 340×110 над «СЕРВЕРЫ»
         tip = Ctx(518, 718, 340, 110)
@@ -385,14 +385,14 @@ def main_menu():
             # tooltip поднимается скриптом: в покое слои полностью прозрачны
             fill(doc, dd, "border", tip, (518, 718, 340, 110), C_BORDER, 0.0)
             fill(doc, dd, "fill", tip, (519, 719, 338, 108), C_PANEL, 0.0)
-            label(doc, dd, "tfl_tooltip_title", tip, (542, 742, 292, 30), "",
+            label(doc, dd, "tfm_tooltip_title", tip, (542, 742, 292, 30), "",
                   C_TEXT, halign="left")
-            label(doc, dd, "tfl_tooltip_text", tip, (542, 776, 292, 28), "",
+            label(doc, dd, "tfm_tooltip_text", tip, (542, 776, 292, 28), "",
                   C_TEXT_2ND, font=FONT_MICRO, halign="left")
 
-        container(doc, d, "tfl_tooltip", ctx, (518, 718, 340, 110), tip_kids,
+        container(doc, d, "tfm_tooltip", ctx, (518, 718, 340, 110), tip_kids,
                   ignore=True)
-        fill(doc, d, "tfl_tooltip_arrow", ctx, (542, 828, 12, 8), C_PANEL, 0.0)
+        fill(doc, d, "tfm_tooltip_arrow", ctx, (542, 828, 12, 8), C_PANEL, 0.0)
 
         # лента действий
         bar = Ctx(88, 791, 1744, 176)
@@ -401,42 +401,42 @@ def main_menu():
             fill(doc, dd, "bar_bg", bar, (88, 791, 1744, 176), C_PANEL, 0.90)
             fill(doc, dd, "bar_top", bar, (88, 791, 1744, 1), C_BORDER)
 
-            button(doc, dd, "tfl_btn_play", bar, (124, 827, 370, 104),
+            button(doc, dd, "tfm_btn_play", bar, (124, 827, 370, 104),
                    "ИГРАТЬ", style="primary")
-            button(doc, dd, "tfl_btn_servers", bar, (518, 844, 240, 70), "СЕРВЕРЫ")
-            button(doc, dd, "tfl_btn_character", bar, (782, 844, 240, 70), "ПЕРСОНАЖ")
-            button(doc, dd, "tfl_btn_settings", bar, (1046, 844, 240, 70), "НАСТРОЙКИ")
+            button(doc, dd, "tfm_btn_servers", bar, (518, 844, 240, 70), "СЕРВЕРЫ")
+            button(doc, dd, "tfm_btn_character", bar, (782, 844, 240, 70), "ПЕРСОНАЖ")
+            button(doc, dd, "tfm_btn_settings", bar, (1046, 844, 240, 70), "НАСТРОЙКИ")
 
-            fill(doc, dd, "tfl_divider", bar, (1310, 839, 1, 80), C_BORDER)
+            fill(doc, dd, "tfm_divider", bar, (1310, 839, 1, 80), C_BORDER)
 
-            button(doc, dd, "tfl_btn_discord", bar, (1335, 844, 96, 70), "",
-                   icon="TFL/GUI/textures/icon_discord.paa")
-            button(doc, dd, "tfl_btn_website", bar, (1455, 844, 96, 70), "",
-                   icon="TFL/GUI/textures/icon_website.paa")
-            button(doc, dd, "tfl_btn_exit", bar, (1568, 844, 228, 70),
+            button(doc, dd, "tfm_btn_discord", bar, (1335, 844, 96, 70), "",
+                   icon="TFM_MENUGAME_UI/GUI/textures/icon_discord.paa")
+            button(doc, dd, "tfm_btn_website", bar, (1455, 844, 96, 70), "",
+                   icon="TFM_MENUGAME_UI/GUI/textures/icon_website.paa")
+            button(doc, dd, "tfm_btn_exit", bar, (1568, 844, 228, 70),
                    "ВЫХОД", style="danger")
 
-        container(doc, d, "tfl_action_bar", ctx, (88, 791, 1744, 176), bar_kids)
+        container(doc, d, "tfm_action_bar", ctx, (88, 791, 1744, 176), bar_kids)
 
         # статус-бар
         sb = Ctx(88, 991, 1744, 68)
 
         def sb_kids(dd):
-            label(doc, dd, "tfl_status_online", sb, (88, 1008, 220, 34),
+            label(doc, dd, "tfm_status_online", sb, (88, 1008, 220, 34),
                   "ONLINE  --/--", C_TEXT_2ND, font=FONT_MICRO, halign="left")
-            label(doc, dd, "tfl_status_server", sb, (332, 1008, 260, 34),
+            label(doc, dd, "tfm_status_server", sb, (332, 1008, 260, 34),
                   "SERVER  --", C_TEXT_2ND, font=FONT_MICRO, halign="left")
-            label(doc, dd, "tfl_status_version", sb, (612, 1008, 220, 34),
+            label(doc, dd, "tfm_status_version", sb, (612, 1008, 220, 34),
                   "VERSION --", C_TEXT_2ND, font=FONT_MICRO, halign="left")
-            label(doc, dd, "tfl_status_ping", sb, (852, 1008, 200, 34),
+            label(doc, dd, "tfm_status_ping", sb, (852, 1008, 200, 34),
                   "PING    -- ms", C_TEXT_2ND, font=FONT_MICRO, halign="left")
-            label(doc, dd, "tfl_status_line", sb, (1136, 1008, 696, 34), "",
+            label(doc, dd, "tfm_status_line", sb, (1136, 1008, 696, 34), "",
                   C_TEXT_3RD, font=FONT_MICRO, halign="right")
 
-        container(doc, d, "tfl_status_bar", ctx, (88, 991, 1744, 68), sb_kids,
+        container(doc, d, "tfm_status_bar", ctx, (88, 991, 1744, 68), sb_kids,
                   ignore=True)
 
-    root(doc, body, "TFL_MainMenuRoot")
+    root(doc, body, "TFM_MainMenuRoot")
     doc.write("main_menu.layout")
 
 
@@ -451,22 +451,22 @@ def hint_card(name, box_w, box_h, *, image, wide=False, arrows=True):
     pad = 40
 
     def body(d, _):
-        fill(doc, d, "tfl_hint_border", ctx, (0, 0, box_w, box_h), C_BORDER)
-        fill(doc, d, "tfl_hint_fill", ctx, (1, 1, box_w - 2, box_h - 2), C_PANEL)
+        fill(doc, d, "tfm_hint_border", ctx, (0, 0, box_w, box_h), C_BORDER)
+        fill(doc, d, "tfm_hint_fill", ctx, (1, 1, box_w - 2, box_h - 2), C_PANEL)
 
         if image:
             if wide:
                 iw, ih = box_w * 0.34, box_h
-                widget(doc, d, "ImageWidgetClass", "tfl_hint_image", ctx,
+                widget(doc, d, "ImageWidgetClass", "tfm_hint_image", ctx,
                        (0, 0, iw, ih), color="1 1 1 1", image=FILL)
-                fill(doc, d, "tfl_hint_image_dim", ctx,
+                fill(doc, d, "tfm_hint_image_dim", ctx,
                      (0, ih * 0.7, iw, ih * 0.3), C_BG, 0.5)
                 tx = iw + pad
             else:
                 ih = box_w * 3.0 / 8.0     # жёстко 8:3
-                widget(doc, d, "ImageWidgetClass", "tfl_hint_image", ctx,
+                widget(doc, d, "ImageWidgetClass", "tfm_hint_image", ctx,
                        (0, 0, box_w, ih), color="1 1 1 1", image=FILL)
-                fill(doc, d, "tfl_hint_image_dim", ctx,
+                fill(doc, d, "tfm_hint_image_dim", ctx,
                      (0, ih * 0.7, box_w, ih * 0.3), C_BG, 0.5)
                 tx = pad
         else:
@@ -476,25 +476,25 @@ def hint_card(name, box_w, box_h, *, image, wide=False, arrows=True):
         top = ih + pad if not wide else pad
         tw = box_w - tx - pad
 
-        label(doc, d, "tfl_hint_category", ctx, (tx, top, tw, 26), "",
+        label(doc, d, "tfm_hint_category", ctx, (tx, top, tw, 26), "",
               C_OLIVE, font=FONT_MICRO, halign="left")
-        label(doc, d, "tfl_hint_title", ctx, (tx, top + 40, tw, 40), "",
+        label(doc, d, "tfm_hint_title", ctx, (tx, top + 40, tw, 40), "",
               C_TEXT, halign="left")
-        multiline(doc, d, "tfl_hint_desc", ctx, (tx, top + 96, tw, 117),
+        multiline(doc, d, "tfm_hint_desc", ctx, (tx, top + 96, tw, 117),
                   C_TEXT_DIM)
 
-        label(doc, d, "tfl_hint_counter", ctx,
+        label(doc, d, "tfm_hint_counter", ctx,
               (tx, box_h - pad - 24, tw * 0.5, 24), "", C_TEXT_2ND,
               font=FONT_MICRO, halign="left")
 
         ay = box_h - pad - 44
         ax = box_w - pad - 56
-        button(doc, d, "tfl_hint_prev", ctx, (ax - 64, ay, 56, 44), "<",
+        button(doc, d, "tfm_hint_prev", ctx, (ax - 64, ay, 56, 44), "<",
                style="secondary" if arrows else "disabled")
-        button(doc, d, "tfl_hint_next", ctx, (ax, ay, 56, 44), ">",
+        button(doc, d, "tfm_hint_next", ctx, (ax, ay, 56, 44), ">",
                style="secondary" if arrows else "disabled")
 
-    widget(doc, 0, "PanelWidgetClass", "TFL_HintCardRoot", ctx,
+    widget(doc, 0, "PanelWidgetClass", "TFM_HintCardRoot", ctx,
            (0, 0, box_w, box_h), color="0 0 0 0",
            children=lambda d: body(d, ctx))
     doc.write(name)
@@ -509,52 +509,52 @@ def progress(doc, d, ctx, x, y, w, h):
 
     def kids(dd):
         fill(doc, dd, "border", track, (x, y, w, h), C_BORDER)
-        fill(doc, dd, "tfl_progress_bg", track, (x + 1, y + 1, w - 2, h - 2),
+        fill(doc, dd, "tfm_progress_bg", track, (x + 1, y + 1, w - 2, h - 2),
              C_PANEL_DEEP)
-        fill(doc, dd, "tfl_progress_fill", track, (x + 1, y + 1, 0, h - 2),
+        fill(doc, dd, "tfm_progress_fill", track, (x + 1, y + 1, 0, h - 2),
              C_OLIVE_DARK)
-        fill(doc, dd, "tfl_progress_caps", track, (x + 1, y - 4, 4, h + 8), C_CAPS)
+        fill(doc, dd, "tfm_progress_caps", track, (x + 1, y - 4, 4, h + 8), C_CAPS)
 
         for pct in (25, 50, 75):
             fill(doc, dd, "tick_%d" % pct, track,
                  (x + w * pct / 100.0, y, 1, h), C_BORDER)
 
-    container(doc, d, "tfl_progress_track", ctx, (x, y, w, h), kids, ignore=True)
+    container(doc, d, "tfm_progress_track", ctx, (x, y, w, h), kids, ignore=True)
 
 
 def loading_screen():
     doc = Doc("// 03 LOADING SCREEN (id 6a). Сгенерирован tools/gen_layouts.py")
 
     def body(d, ctx):
-        widget(doc, d, "ImageWidgetClass", "tfl_load_bg", ctx, (0, 0, W, H),
+        widget(doc, d, "ImageWidgetClass", "tfm_load_bg", ctx, (0, 0, W, H),
                color="1 1 1 1",
-               image="TFL/GUI/textures/loading_background_01.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/loading_background_01.paa")
 
-        gradient(doc, d, ctx, "tfl_load_grad", 0, 660, W, 420, 4, C_BG,
+        gradient(doc, d, ctx, "tfm_load_grad", 0, 660, W, 420, 4, C_BG,
                  bottom=0.80)
 
-        widget(doc, d, "ImageWidgetClass", "tfl_load_logo", ctx,
+        widget(doc, d, "ImageWidgetClass", "tfm_load_logo", ctx,
                (176, 120, 320, 80), color="1 1 1 1",
-               image="TFL/GUI/textures/logo_small.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/logo_small.paa")
 
-        container(doc, d, "tfl_load_hint_holder", ctx, (1232, 180, 600, 460),
+        container(doc, d, "tfm_load_hint_holder", ctx, (1232, 180, 600, 460),
                   lambda dd: None)
 
-        label(doc, d, "tfl_load_label", ctx, (88, 856, 400, 26),
+        label(doc, d, "tfm_load_label", ctx, (88, 856, 400, 26),
               "ЗАГРУЗКА МИРА", C_TEXT_2ND, font=FONT_MICRO, halign="left")
 
         progress(doc, d, ctx, 88, 900, 1280, 28)
 
-        label(doc, d, "tfl_progress_percent", ctx, (1392, 896, 200, 40), "0%",
+        label(doc, d, "tfm_progress_percent", ctx, (1392, 896, 200, 40), "0%",
               C_TEXT, halign="left")
-        label(doc, d, "tfl_load_caption", ctx, (88, 952, 700, 24),
+        label(doc, d, "tfm_load_caption", ctx, (88, 952, 700, 24),
               "CHERNARUS · ЗАГРУЗКА ЛАНДШАФТА", C_TEXT_3RD, font=FONT_MICRO,
               halign="left")
-        label(doc, d, "tfl_load_warning", ctx, (88, 984, 700, 24),
+        label(doc, d, "tfm_load_warning", ctx, (88, 984, 700, 24),
               "НЕ ВЫКЛЮЧАЙТЕ ИГРУ ДО ЗАВЕРШЕНИЯ ЗАГРУЗКИ", C_TEXT_3RD,
               font=FONT_MICRO, halign="left")
 
-    root(doc, body, "TFL_LoadingRoot")
+    root(doc, body, "TFM_LoadingRoot")
     doc.write("loading_screen.layout")
 
 
@@ -562,28 +562,28 @@ def loading_centered():
     doc = Doc("// 04 LOADING, центрированный (id 8b). Сгенерирован tools/gen_layouts.py")
 
     def body(d, ctx):
-        widget(doc, d, "ImageWidgetClass", "tfl_load_bg", ctx, (0, 0, W, H),
+        widget(doc, d, "ImageWidgetClass", "tfm_load_bg", ctx, (0, 0, W, H),
                color="1 1 1 1",
-               image="TFL/GUI/textures/loading_background_02.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/loading_background_02.paa")
 
-        fill(doc, d, "tfl_load_dim", ctx, (0, 0, W, H), C_BG, 0.35)
+        fill(doc, d, "tfm_load_dim", ctx, (0, 0, W, H), C_BG, 0.35)
 
-        widget(doc, d, "ImageWidgetClass", "tfl_load_logo", ctx,
+        widget(doc, d, "ImageWidgetClass", "tfm_load_logo", ctx,
                (800, 120, 320, 80), color="1 1 1 1",
-               image="TFL/GUI/textures/logo_small.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/logo_small.paa")
 
-        container(doc, d, "tfl_load_hint_holder", ctx, (460, 400, 1000, 340),
+        container(doc, d, "tfm_load_hint_holder", ctx, (460, 400, 1000, 340),
                   lambda dd: None)
 
         progress(doc, d, ctx, 460, 800, 1000, 24)
 
-        label(doc, d, "tfl_progress_percent", ctx, (460, 840, 1000, 40), "0%",
+        label(doc, d, "tfm_progress_percent", ctx, (460, 840, 1000, 40), "0%",
               C_TEXT)
-        label(doc, d, "tfl_load_caption", ctx, (460, 900, 1000, 24),
+        label(doc, d, "tfm_load_caption", ctx, (460, 900, 1000, 24),
               "НЕ ВЫКЛЮЧАЙТЕ ИГРУ ДО ЗАВЕРШЕНИЯ ЗАГРУЗКИ", C_TEXT_3RD,
               font=FONT_MICRO)
 
-    root(doc, body, "TFL_LoadingCenteredRoot")
+    root(doc, body, "TFM_LoadingCenteredRoot")
     doc.write("loading_centered.layout")
 
 
@@ -598,15 +598,15 @@ def server_queue():
     PAD = 40
 
     def body(d, ctx):
-        widget(doc, d, "ImageWidgetClass", "tfl_queue_bg", ctx, (0, 0, W, H),
+        widget(doc, d, "ImageWidgetClass", "tfm_queue_bg", ctx, (0, 0, W, H),
                color="1 1 1 1",
-               image="TFL/GUI/textures/loading_background_03.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/loading_background_03.paa")
 
         # blur 6px движком UI не даётся — компенсируется затемнением 65%
-        fill(doc, d, "tfl_queue_dim", ctx, (0, 0, W, H), C_BG, 0.65)
-        widget(doc, d, "ImageWidgetClass", "tfl_queue_vignette", ctx,
+        fill(doc, d, "tfm_queue_dim", ctx, (0, 0, W, H), C_BG, 0.65)
+        widget(doc, d, "ImageWidgetClass", "tfm_queue_vignette", ctx,
                (0, 0, W, H), color="1 1 1 1",
-               image="TFL/GUI/textures/vignette.paa")
+               image="TFM_MENUGAME_UI/GUI/textures/vignette.paa")
 
         panel = Ctx(PX, PY, PW, PH)
         left = PX + PAD
@@ -616,43 +616,43 @@ def server_queue():
             fill(doc, dd, "fill", panel, (PX + 1, PY + 1, PW - 2, PH - 2), C_PANEL)
             fill(doc, dd, "mark", panel, (PX, PY, PW, 4), C_OLIVE)
 
-            label(doc, dd, "tfl_queue_title", panel, (left, PY + 42, PW - PAD * 2, 28),
+            label(doc, dd, "tfm_queue_title", panel, (left, PY + 42, PW - PAD * 2, 28),
                   "ПОДКЛЮЧЕНИЕ К СЕРВЕРУ", C_TEXT, halign="left")
-            label(doc, dd, "tfl_queue_label", panel, (left, PY + 80, PW - PAD * 2, 22),
+            label(doc, dd, "tfm_queue_label", panel, (left, PY + 80, PW - PAD * 2, 22),
                   "Ваша позиция в очереди", C_TEXT_2ND, font=FONT_MICRO,
                   halign="left")
 
             # 88px tabular — текстурные глифы, до трёх разрядов
-            row = digit_row(doc, dd, panel, "tfl_queue_digits",
+            row = digit_row(doc, dd, panel, "tfm_queue_digits",
                             left, PY + 122, 88, "ddd")
 
             # «/ NN» — 36px вторичным, по нижней линии числа
-            label(doc, dd, "tfl_queue_total", panel,
+            label(doc, dd, "tfm_queue_total", panel,
                   (left + row + 20, PY + 168, 200, 34), "", C_TEXT_2ND,
                   halign="left")
 
-            label(doc, dd, "tfl_queue_waiting", panel, (left, PY + 246, 300, 22),
+            label(doc, dd, "tfm_queue_waiting", panel, (left, PY + 246, 300, 22),
                   "Ожидание подключения", C_TEXT_2ND, font=FONT_MICRO,
                   halign="left")
 
             # индикатор: три квадрата 8×8, поочерёдная пульсация 1.2 s
             for i in range(3):
-                fill(doc, dd, "tfl_queue_dot_%d" % i, panel,
+                fill(doc, dd, "tfm_queue_dot_%d" % i, panel,
                      (left + 250 + i * 20, PY + 253, 8, 8), C_OLIVE)
 
-            button(doc, dd, "tfl_queue_cancel", panel,
+            button(doc, dd, "tfm_queue_cancel", panel,
                    (left, PY + 296, 300, 70), "ОТМЕНА", style="danger")
 
-        container(doc, d, "tfl_queue_panel", ctx, (PX, PY, PW, PH), kids)
+        container(doc, d, "tfm_queue_panel", ctx, (PX, PY, PW, PH), kids)
 
-        container(doc, d, "tfl_queue_hint_holder", ctx, (1232, 340, 600, 400),
+        container(doc, d, "tfm_queue_hint_holder", ctx, (1232, 340, 600, 400),
                   lambda dd: None)
 
-        label(doc, d, "tfl_queue_caption", ctx, (PX, 980, 900, 24),
+        label(doc, d, "tfm_queue_caption", ctx, (PX, 980, 900, 24),
               "СРЕДНЕЕ ВРЕМЯ ОЖИДАНИЯ ~ 4 МИН · НЕ ЗАКРЫВАЙТЕ КЛИЕНТ",
               C_TEXT_3RD, font=FONT_MICRO, halign="left")
 
-    root(doc, body, "TFL_QueueRoot")
+    root(doc, body, "TFM_QueueRoot")
     doc.write("server_queue.layout")
 
 
@@ -668,28 +668,28 @@ def timer_panel():
     PX, PY, PW, PH = 660, 370, 600, 340
 
     def body(d, ctx):
-        fill(doc, d, "tfl_timer_dim", ctx, (0, 0, W, H), C_BG, 0.80)
+        fill(doc, d, "tfm_timer_dim", ctx, (0, 0, W, H), C_BG, 0.80)
 
         panel = Ctx(PX, PY, PW, PH)
 
         def kids(dd):
             fill(doc, dd, "border", panel, (PX, PY, PW, PH), C_BORDER)
             fill(doc, dd, "fill", panel, (PX + 1, PY + 1, PW - 2, PH - 2), C_PANEL)
-            fill(doc, dd, "tfl_timer_mark", panel, (PX, PY, PW, 4), C_OLIVE)
+            fill(doc, dd, "tfm_timer_mark", panel, (PX, PY, PW, 4), C_OLIVE)
 
-            label(doc, dd, "tfl_timer_title", panel, (PX + 40, PY + 34, PW - 80, 28),
+            label(doc, dd, "tfm_timer_title", panel, (PX + 40, PY + 34, PW - 80, 28),
                   "ВХОД В МИР", C_TEXT)
 
             # 92px tabular — текстурные глифы, по центру панели
-            digit_row(doc, dd, panel, "tfl_timer_digits",
+            digit_row(doc, dd, panel, "tfm_timer_digits",
                       PX + PW / 2, PY + 82, 92, "dd:dd", center=True)
 
-            label(doc, dd, "tfl_timer_subtitle", panel,
+            label(doc, dd, "tfm_timer_subtitle", panel,
                   (PX + 30, PY + 190, PW - 60, 24),
                   "Не отключайте игру во время подключения", C_TEXT_2ND,
                   font=FONT_MICRO)
 
-            label(doc, dd, "tfl_timer_character", panel,
+            label(doc, dd, "tfm_timer_character", panel,
                   (PX + 30, PY + 218, PW - 60, 22), "", C_TEXT_3RD,
                   font=FONT_MICRO)
 
@@ -699,24 +699,24 @@ def timer_panel():
             def track_kids(ddd):
                 fill(doc, ddd, "bg", track, (PX + (PW - 360) / 2, PY + 262, 360, 12),
                      C_PANEL_DEEP)
-                fill(doc, ddd, "tfl_timer_fill", track,
+                fill(doc, ddd, "tfm_timer_fill", track,
                      (PX + (PW - 360) / 2, PY + 262, 360, 12), C_OLIVE_DARK)
 
-            container(doc, dd, "tfl_timer_track", panel,
+            container(doc, dd, "tfm_timer_track", panel,
                       (PX + (PW - 360) / 2, PY + 262, 360, 12), track_kids,
                       ignore=True)
 
             # respawn: кнопка 300×70 по центру, подпись под ней
-            button(doc, dd, "tfl_timer_respawn", panel,
+            button(doc, dd, "tfm_timer_respawn", panel,
                    (PX + (PW - 300) / 2, PY + 232, 300, 70), "ВОЗРОДИТЬСЯ",
                    style="disabled")
-            label(doc, dd, "tfl_timer_hint", panel,
+            label(doc, dd, "tfm_timer_hint", panel,
                   (PX + 30, PY + 310, PW - 60, 20), "КНОПКА АКТИВНА ПРИ 00:00",
                   C_TEXT_3RD, font=FONT_MICRO)
 
-        container(doc, d, "tfl_timer_panel", ctx, (PX, PY, PW, PH), kids)
+        container(doc, d, "tfm_timer_panel", ctx, (PX, PY, PW, PH), kids)
 
-    root(doc, body, "TFL_TimerRoot")
+    root(doc, body, "TFM_TimerRoot")
     doc.write("timer_panel.layout")
 
 
@@ -728,32 +728,32 @@ def dialog():
     doc = Doc("// 09/10 DIALOGS (id 7a). Сгенерирован tools/gen_layouts.py")
 
     def body(d, ctx):
-        fill(doc, d, "tfl_dialog_dim", ctx, (0, 0, W, H), C_BG, 0.70)
+        fill(doc, d, "tfm_dialog_dim", ctx, (0, 0, W, H), C_BG, 0.70)
 
         panel = Ctx(600, 360, 720, 360)
 
         def kids(dd):
             fill(doc, dd, "border", panel, (600, 360, 720, 360), C_BORDER)
             fill(doc, dd, "fill", panel, (601, 361, 718, 358), C_PANEL)
-            fill(doc, dd, "tfl_dialog_mark", panel, (600, 360, 720, 4), C_OLIVE)
+            fill(doc, dd, "tfm_dialog_mark", panel, (600, 360, 720, 4), C_OLIVE)
 
-            label(doc, dd, "tfl_dialog_title", panel, (640, 400, 640, 30),
+            label(doc, dd, "tfm_dialog_title", panel, (640, 400, 640, 30),
                   "ПОДТВЕРЖДЕНИЕ", C_TEXT, halign="left")
-            multiline(doc, dd, "tfl_dialog_text", panel, (640, 460, 640, 78),
+            multiline(doc, dd, "tfm_dialog_text", panel, (640, 460, 640, 78),
                       C_TEXT_DIM, lines=2)
-            label(doc, dd, "tfl_dialog_code", panel, (640, 550, 640, 24), "",
+            label(doc, dd, "tfm_dialog_code", panel, (640, 550, 640, 24), "",
                   C_RED, font=FONT_MICRO, halign="left")
 
-            fill(doc, dd, "tfl_dialog_sep", panel, (640, 586, 640, 1), C_BORDER)
+            fill(doc, dd, "tfm_dialog_sep", panel, (640, 586, 640, 1), C_BORDER)
 
-            button(doc, dd, "tfl_dialog_btn_left", panel, (656, 610, 300, 70),
+            button(doc, dd, "tfm_dialog_btn_left", panel, (656, 610, 300, 70),
                    "ОТМЕНА")
-            button(doc, dd, "tfl_dialog_btn_right", panel, (980, 610, 300, 70),
+            button(doc, dd, "tfm_dialog_btn_right", panel, (980, 610, 300, 70),
                    "ВЫЙТИ", style="danger")
 
-        container(doc, d, "tfl_dialog_panel", ctx, (600, 360, 720, 360), kids)
+        container(doc, d, "tfm_dialog_panel", ctx, (600, 360, 720, 360), kids)
 
-    root(doc, body, "TFL_DialogRoot")
+    root(doc, body, "TFM_DialogRoot")
     doc.write("dialog.layout")
 
 
@@ -767,7 +767,7 @@ def section_panel():
     px, py, pw, ph = 88, 260, 1744, 571
 
     def body(d, ctx):
-        fill(doc, d, "tfl_section_dim", ctx, (0, 0, W, H), C_BG, 0.80)
+        fill(doc, d, "tfm_section_dim", ctx, (0, 0, W, H), C_BG, 0.80)
 
         panel = Ctx(px, py, pw, ph)
         cols = [("name", 0.03, 0.30), ("map", 0.36, 0.14),
@@ -808,21 +808,21 @@ def section_panel():
                                inner_w * cw - 24, 26),
                               "", C_TEXT_DIM, font=FONT_MICRO, halign="left")
 
-                widget(doc, dd, "ButtonWidgetClass", "tfl_row_%d" % i, panel,
+                widget(doc, dd, "ButtonWidgetClass", "tfm_row_%d" % i, panel,
                        (inner_x, ry, inner_w, row_h), color="0 0 0 0",
                        children=row_kids)
 
-            label(doc, dd, "tfl_section_desc", panel,
+            label(doc, dd, "tfm_section_desc", panel,
                   (inner_x, py + ph - 120, inner_w * 0.6, 60), "", C_TEXT_2ND,
                   font=FONT_MICRO, halign="left")
 
-            button(doc, dd, "tfl_section_action", panel,
+            button(doc, dd, "tfm_section_action", panel,
                    (px + pw - 40 - 300, py + ph - 110, 300, 70),
                    "ПОДКЛЮЧИТЬСЯ", style="primary")
 
-        container(doc, d, "tfl_section_panel", ctx, (px, py, pw, ph), kids)
+        container(doc, d, "tfm_section_panel", ctx, (px, py, pw, ph), kids)
 
-    root(doc, body, "TFL_SectionRoot")
+    root(doc, body, "TFM_SectionRoot")
     doc.write("section_panel.layout")
 
 

@@ -1,4 +1,4 @@
-# TFL — интерфейс DayZ по хендоффу THE FIRST LINE | MILITARY RP
+# TFM_MENUGAME_UI — интерфейс DayZ по хендоффу THE FIRST LINE | MILITARY RP
 
 Клиентский мод: полная замена визуальной части интерфейса по
 `docs/DESIGN_HANDOFF.md`. Все 14 экранов ТЗ, `.layout` и `.paa` включены —
@@ -19,37 +19,37 @@
 
 | # | Экран | id | Layout | Контроллер |
 |---|---|---|---|---|
-| 01 | Главное меню | 5a | `main_menu.layout` | `TFLMainMenu.c` |
-| 02 | Hover + tooltip | 5b | там же | `TFLTooltip.c` |
-| 03 | Загрузка | 6a | `loading_screen.layout` | `TFLLoadingView.c` |
+| 01 | Главное меню | 5a | `main_menu.layout` | `TFMMainMenu.c` |
+| 02 | Hover + tooltip | 5b | там же | `TFMTooltip.c` |
+| 03 | Загрузка | 6a | `loading_screen.layout` | `TFMLoadingView.c` |
 | 04 | Загрузка, центрированная | 8b | `loading_centered.layout` | там же |
-| 05 | Очередь на сервер | 6b | `server_queue.layout` | `TFLQueueView.c` |
-| 06 | Таймер входа | 6c | `timer_panel.layout` | `TFLTimerView.c` |
+| 05 | Очередь на сервер | 6b | `server_queue.layout` | `TFMQueueView.c` |
+| 06 | Таймер входа | 6c | `timer_panel.layout` | `TFMTimerView.c` |
 | 07 | Таймер респавна | 6c | там же (режим RESPAWN) | там же |
-| 08 | Hint card | 8a | `hint_card*.layout` ×3 | `TFLHintCard.c` |
-| 09/10 | Диалоги | 7a | `dialog.layout` | `TFLDialogMenu.c` |
-| 11–14 | UI-kit / состояния / прогресс / ассеты | 7b, 4a, 8b, 8d | — | `TFLTheme.c`, `TFLMenuButton.c`, `TFLProgressBar.c` |
-| — | Панель раздела | 8c | `section_panel.layout` | `TFLSectionPanel.c` |
+| 08 | Hint card | 8a | `hint_card*.layout` ×3 | `TFMHintCard.c` |
+| 09/10 | Диалоги | 7a | `dialog.layout` | `TFMDialogMenu.c` |
+| 11–14 | UI-kit / состояния / прогресс / ассеты | 7b, 4a, 8b, 8d | — | `TFMTheme.c`, `TFMMenuButton.c`, `TFMProgressBar.c` |
+| — | Панель раздела | 8c | `section_panel.layout` | `TFMSectionPanel.c` |
 
 Листы 11–14 — не экраны, а спецификации; они реализованы как код: токены в
-`TFLTheme`, матрица состояний в `TFLMenuButton`, прогресс в `TFLProgressBar`.
+`TFMTheme`, матрица состояний в `TFMMenuButton`, прогресс в `TFMProgressBar`.
 
 ## Структура
 
 ```
-TFL/
-  $PBOPREFIX$                     TFL
+TFM_MENUGAME_UI/
+  $PBOPREFIX$                     TFM_MENUGAME_UI
   config.cpp
   GUI/Layouts/*.layout            10 файлов — генерируются, см. tools/
   GUI/textures/*.paa              11 текстур — генерируются, см. tools/
   GUI/textures/_source/           исходные PNG фонов (в PBO не нужны)
-  Scripts/5_Mission/TFL/          14 файлов Enforce Script
+  Scripts/5_Mission/TFM/          14 файлов Enforce Script
 tools/
   gen_layouts.py     все .layout из пиксельной геометрии хендоффа
   gen_textures.py    заливка, логотипы, иконки, виньетка -> .paa
   png_to_paa.py      PNG -> PAA (DXT1/DXT5), для фонов
   preview_layout.py  оффлайн-рендер .layout в PNG
-  build_mod.py       сборка @TFL + zip с проверкой PBO
+  build_mod.py       сборка @TFM_MENUGAME_UI + zip с проверкой PBO
   pack_pbo.py, list_pbo.py, sha256_file.py   (из WorkKit)
 docs/
   DESIGN_HANDOFF.md  исходный дизайн-хендофф
@@ -66,7 +66,7 @@ python3 tools/gen_layouts.py
 
 ## Настройка
 
-`$profile:TFL/menu_config.json` создаётся с дефолтами при первом запуске и
+`$profile:TFM_MENUGAME_UI/menu_config.json` создаётся с дефолтами при первом запуске и
 правится без пересборки PBO:
 
 ```json
@@ -96,14 +96,14 @@ python3 tools/gen_layouts.py
 python3 tools/build_mod.py
 ```
 
-Собирает `build/@TFL/` и `build/TFL_mod.zip`: стейджинг без
+Собирает `build/@TFM_MENUGAME_UI/` и `build/TFM_mod.zip`: стейджинг без
 `GUI/textures/_source/` (исходные PNG в PBO не нужны), упаковка PBO и
 проверка — PBO распаковывается обратно, файлы сверяются с исходными,
 контролируется SHA1-подпись в хвосте.
 
-Положить `@TFL` рядом с DayZ и запустить с `-mod=@TFL`.
+Положить `@TFM_MENUGAME_UI` рядом с DayZ и запустить с `-mod=@TFM_MENUGAME_UI`.
 
-`$PBOPREFIX$` = `TFL`, поэтому пути в layout — `TFL/GUI/textures/...`.
+`$PBOPREFIX$` = `TFM_MENUGAME_UI`, поэтому пути в layout — `TFM_MENUGAME_UI/GUI/textures/...`.
 Никаких `P:/`, `C:/`, `D:/`.
 
 ## Как это устроено (три грабли DayZ, на которых легко потерять день)
@@ -114,7 +114,7 @@ python3 tools/build_mod.py
 1. **Цвет в `.layout` — RGBA, в скрипте — ARGB.** Записанный альфа-первым
    тёмный цвет получает альфой свой синий канал (`#16181A` → `0.102`) и
    панель просто исчезает, без единой строчки в логе. Проверка:
-   `grep -hE '^\s*color\s' TFL/GUI/Layouts/*.layout | awk '{print $NF}' | sort | uniq -c`
+   `grep -hE '^\s*color\s' TFM_MENUGAME_UI/GUI/Layouts/*.layout | awk '{print $NF}' | sort | uniq -c`
    — должны преобладать `1` и `0`.
 2. **`hexactpos` / `vexactpos` / `hexactsize` / `vexactsize` = 0.** Без них
    движок читает `position`/`size` как пиксели, и вся вёрстка уезжает.
@@ -155,18 +155,18 @@ TexView 2, имена файлов менять не нужно.
 
 Одно место, а не список:
 
-**`TFLIntegration.c`** — единственный файл, который трогает ванильные классы
+**`TFMIntegration.c`** — единственный файл, который трогает ванильные классы
 (`LoadingScreen`, `LoginQueueBase`, `LoginTimeBase`, `RespawnDialogue`). Их
 имена и сигнатуры менялись между версиями DayZ. Если компилятор ругается —
 правится или удаляется только он: вьюхи самодостаточны, главное меню не
 сломается. Внутри три места ждут вызовов вашего билда:
 
-- `TFLSetProgress` — реальный прогресс загрузки;
-- `TFLSetPosition` / `TFLSetTime` — позиция в очереди и отсчёт;
+- `TFMSetProgress` — реальный прогресс загрузки;
+- `TFMSetPosition` / `TFMSetTime` — позиция в очереди и отсчёт;
 - в `RespawnDialogue.OnClick` — вызов ванильного респавна (наш
   `ButtonWidget` не тот, на который завязан оригинальный обработчик).
 
-Плюс `g_Game.ConnectFromServerBrowser(...)` в `TFLMainMenu.TFLPlay()` —
+Плюс `g_Game.ConnectFromServerBrowser(...)` в `TFMMainMenu.TFMPlay()` —
 сверить с `scripts/5_Mission/gui/ServerBrowser`.
 
 **Про кегль текста.** В layout стоят два шрифтовых ресурса, существование
@@ -175,7 +175,7 @@ TexView 2, имена файлов менять не нужно.
 удалось, а выдуманное имя даёт невидимый текст. Поэтому всё крупное набрано
 текстурами и от игровых шрифтов не зависит: логотипы, а также таймер 92px и
 позиция в очереди 88px — они собираются из глифов `GUI/textures/digits/`
-(`TFL_Digits`, слоты раскладывает `digit_row` в генераторе; ширина слота
+(`TFM_Digits`, слоты раскладывает `digit_row` в генераторе; ширина слота
 одинаковая — это tabular-nums из спеки).
 
 Текстом остаётся то, что в хендоффе идёт кеглем 20–40 (заголовки панелей,
@@ -201,9 +201,9 @@ TexView 2, имена файлов менять не нужно.
 - **Панель раздела открывается только для «СЕРВЕРЫ».** «ПЕРСОНАЖ» и
   «НАСТРОЙКИ» ведут в ванильные меню: пустая красивая панель хуже рабочих
   настроек. Компонент универсальный — переключается одной строкой в
-  `TFLMainMenu.OnClick`.
+  `TFMMainMenu.OnClick`.
 - **Список серверов** — сейчас одна строка из конфига. Точка подстановки
-  реального списка: `TFLMainMenu.TFLBuildServerRows()`.
+  реального списка: `TFMMainMenu.TFMBuildServerRows()`.
 - **Диалоги показываются через `UIManager.ShowScriptedMenu`**, а не через
   собственный `MENU_*` id — не требует регистрации в фабрике меню.
 
@@ -216,5 +216,5 @@ TexView 2, имена файлов менять не нужно.
   углами. Визуально совпадает, но при желании ассет-лист 8d заменяется на
   настоящие 9-patch без правки скриптов — слои уже разведены по именам.
 - Шум 5% поверх фона.
-- Focus-рамка для геймпада: состояние в `TFLMenuButton` заложено, отдельный
+- Focus-рамка для геймпада: состояние в `TFMMenuButton` заложено, отдельный
   виджет рамки не добавлен.

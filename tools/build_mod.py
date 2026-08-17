@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Сборка готового мода: build/@TFL/ и build/TFL_mod.zip.
+"""Сборка готового мода: build/@TFM_MENUGAME_UI/ и build/TFM_MENUGAME_UI_mod.zip.
 
 Шаги:
-  1. стейджинг — копия TFL/ без GUI/textures/_source (исходные PNG в PBO
+  1. стейджинг — копия TFM_MENUGAME_UI/ без GUI/textures/_source (исходные PNG в PBO
      не нужны, это 11 МБ мусора в раздаче);
   2. упаковка PBO (tools/pack_pbo.py);
   3. проверка — PBO распаковывается обратно и файлы сверяются с исходными,
@@ -23,25 +23,25 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
-SRC = os.path.join(ROOT, "TFL")
+SRC = os.path.join(ROOT, "TFM_MENUGAME_UI")
 BUILD = os.path.join(ROOT, "build")
-STAGE = os.path.join(BUILD, "stage", "TFL")
-MODDIR = os.path.join(BUILD, "@TFL")
-PBO = os.path.join(MODDIR, "Addons", "TFL.pbo")
-ZIP = os.path.join(BUILD, "TFL_mod.zip")
+STAGE = os.path.join(BUILD, "stage", "TFM_MENUGAME_UI")
+MODDIR = os.path.join(BUILD, "@TFM_MENUGAME_UI")
+PBO = os.path.join(MODDIR, "Addons", "TFM_MENUGAME_UI.pbo")
+ZIP = os.path.join(BUILD, "TFM_MENUGAME_UI_mod.zip")
 
-PREFIX = "TFL"
+PREFIX = "TFM_MENUGAME_UI"
 EXCLUDE = {os.path.join("GUI", "textures", "_source")}
 
-README = """TFL — интерфейс DayZ "THE FIRST LINE | MILITARY RP"
+README = """TFM_MENUGAME_UI — интерфейс DayZ "THE FIRST LINE | MILITARY RP"
 
 УСТАНОВКА
-1. Положить папку @TFL рядом с DayZ_x64.exe
-2. Запустить игру с параметром:  -mod=@TFL
+1. Положить папку @TFM_MENUGAME_UI рядом с DayZ_x64.exe
+2. Запустить игру с параметром:  -mod=@TFM_MENUGAME_UI
 
 НАСТРОЙКА СЕРВЕРА
 При первом запуске создастся файл:
-    <профиль DayZ>/TFL/menu_config.json
+    <профиль DayZ>/TFM_MENUGAME_UI/menu_config.json
 
 В нём указываются адрес сервера, ссылки и версия:
     "ServerIP":   "203.0.113.10"
@@ -59,7 +59,7 @@ README = """TFL — интерфейс DayZ "THE FIRST LINE | MILITARY RP"
 ЕСЛИ ЧТО-ТО НЕ ЗАПУСКАЕТСЯ
 Экраны загрузки, очереди и таймеров цепляются к ванильным классам DayZ,
 имена которых меняются между версиями игры. Всё это собрано в одном файле
-Scripts/5_Mission/TFL/TFLIntegration.c — при ошибках компиляции правится
+Scripts/5_Mission/TFM/TFMIntegration.c — при ошибках компиляции правится
 или удаляется только он, главное меню от этого не ломается.
 """
 
@@ -153,7 +153,7 @@ def archive():
         for base, _, files in os.walk(MODDIR):
             for name in files:
                 full = os.path.join(base, name)
-                zf.write(full, os.path.join("@TFL", os.path.relpath(full, MODDIR)))
+                zf.write(full, os.path.join("@TFM_MENUGAME_UI", os.path.relpath(full, MODDIR)))
 
 
 def main():
