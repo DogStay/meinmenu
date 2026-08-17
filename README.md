@@ -49,6 +49,7 @@ tools/
   gen_textures.py    заливка, логотипы, иконки, виньетка -> .paa
   png_to_paa.py      PNG -> PAA (DXT1/DXT5), для фонов
   preview_layout.py  оффлайн-рендер .layout в PNG
+  build_mod.py       сборка @TFL + zip с проверкой PBO
   pack_pbo.py, list_pbo.py, sha256_file.py   (из WorkKit)
 docs/
   DESIGN_HANDOFF.md  исходный дизайн-хендофф
@@ -92,11 +93,15 @@ python3 tools/gen_layouts.py
 ## Сборка
 
 ```
-python3 tools/pack_pbo.py TFL @TFL/Addons/TFL.pbo TFL
+python3 tools/build_mod.py
 ```
 
-Положить `@TFL` рядом с DayZ и запустить с `-mod=@TFL`. Скрипты
-прекомпилируются Workbench'ем, как обычно.
+Собирает `build/@TFL/` и `build/TFL_mod.zip`: стейджинг без
+`GUI/textures/_source/` (исходные PNG в PBO не нужны), упаковка PBO и
+проверка — PBO распаковывается обратно, файлы сверяются с исходными,
+контролируется SHA1-подпись в хвосте.
+
+Положить `@TFL` рядом с DayZ и запустить с `-mod=@TFL`.
 
 `$PBOPREFIX$` = `TFL`, поэтому пути в layout — `TFL/GUI/textures/...`.
 Никаких `P:/`, `C:/`, `D:/`.
