@@ -96,7 +96,7 @@ python3 tools/gen_layouts.py
 python3 tools/build_mod.py
 ```
 
-Собирает `build/@TFM_MENUGAME_UI/` и `build/TFM_mod.zip`: стейджинг без
+Собирает `build/@TFM_MENUGAME_UI/` и `build/TFM_MENUGAME_UI_mod.zip`: стейджинг без
 `GUI/textures/_source/` (исходные PNG в PBO не нужны), упаковка PBO и
 проверка — PBO распаковывается обратно, файлы сверяются с исходными,
 контролируется SHA1-подпись в хвосте.
